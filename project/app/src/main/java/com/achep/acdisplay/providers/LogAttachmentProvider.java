@@ -39,7 +39,7 @@ public class LogAttachmentProvider extends ContentProvider {
 
     private static final String TAG = "LogAttachmentProvider";
 
-    public static final String AUTHORITY = "com.achep.acdisplay.logs";
+    public static final String AUTHORITY = "com.achep.headsup.logs";
     public static final String DIRECTORY = "logs";
 
     private static final String COLUMN_DATA = "_data";

@@ -224,7 +224,7 @@
         <!-- For sending logs as attachments -->
         <provider
             android:name="com.achep.acdisplay.providers.LogAttachmentProvider"
-            android:authorities="com.achep.acdisplay.logs"
+            android:authorities="com.achep.headsup.logs"
             android:exported="true"
             tools:ignore="ExportedContentProvider" />
 
