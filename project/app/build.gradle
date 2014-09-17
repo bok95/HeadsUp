@@ -125,7 +125,6 @@ robolectric {
 }
 
 dependencies {
-    provided fileTree(dir: 'src/main/libs', include: ['XposedBridgeApi*.jar'])
     compile fileTree(dir: 'src/main/libs', include: ['*.jar'], exclude: ['XposedBridgeApi*'])
     //noinspection GradleDependency,GradleDynamicVersion
     compile 'com.android.support:support-v4:19.+'

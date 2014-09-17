@@ -257,20 +257,6 @@
             </intent-filter>
         </receiver>
 
-        <!--
-            AcDisplay does provide Xposed module.
-            http://xposed.info
-            -->
-        <meta-data
-            android:name="xposedmodule"
-            android:value="true" />
-        <meta-data
-            android:name="xposedminversion"
-            android:value="2.0*" />
-        <meta-data
-            android:name="xposeddescription"
-            android:value="@string/xposed_description" />
-
     </application>
 
 </manifest>
