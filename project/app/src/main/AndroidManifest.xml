@@ -221,20 +221,6 @@
             </intent-filter>
         </receiver>
 
-        <!-- Receiver for a widget -->
-        <receiver android:name="com.achep.acdisplay.providers.ToggleWidgetProvider">
-            <intent-filter>
-                <action android:name="android.appwidget.action.APPWIDGET_ENABLED" />
-                <action android:name="android.appwidget.action.APPWIDGET_DISABLED" />
-                <action android:name="android.appwidget.action.APPWIDGET_UPDATE" />
-                <action android:name="android.appwidget.action.APPWIDGET_DELETED" />
-            </intent-filter>
-
-            <meta-data
-                android:name="android.appwidget.provider"
-                android:resource="@xml/appwidget_toggle_info" />
-        </receiver>
-
         <!-- For sending logs as attachments -->
         <provider
             android:name="com.achep.acdisplay.providers.LogAttachmentProvider"
