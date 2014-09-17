@@ -19,7 +19,7 @@
   -->
 <resources xmlns:xliff="urn:oasis:names:tc:xliff:document:1.2">
 
-    <string name="app_name" translatable="false">AcDisplay</string>
+    <string name="app_name" translatable="false">HeadsUp</string>
     <string name="app_description">AcDisplay is a new way of handling notifications in Android. It will inform you about new notifications by showing a minimal, beautiful screen, allowing you to open them directly from the lock screen. And if you want to see what\'s going on, you can simply take your phone out of your pocket to view all the latest notifications, in a similarly pleasing and minimalistic manner.</string>
 
     <string name="xposed_description">Helps AcDisplay to integrate deeper into Android.</string>
