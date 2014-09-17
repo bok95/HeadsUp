@@ -50,7 +50,7 @@ import com.achep.acdisplay.Build;
 import com.achep.acdisplay.Config;
 import com.achep.acdisplay.Device;
 import com.achep.acdisplay.DialogHelper;
-import com.achep.acdisplay.R;
+import com.achep.headsup.R;
 import com.achep.acdisplay.acdisplay.AcDisplayActivity;
 import com.achep.acdisplay.fragments.AboutDialog;
 import com.achep.acdisplay.iab.DonationFragment;

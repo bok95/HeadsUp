@@ -10,7 +10,7 @@ import android.view.MotionEvent;
 import android.view.View;
 import android.view.ViewConfiguration;
 
-import com.achep.acdisplay.R;
+import com.achep.headsup.R;
 import com.achep.acdisplay.widgets.NotificationWidget;
 
 import dreamers.graphics.RippleDrawable;

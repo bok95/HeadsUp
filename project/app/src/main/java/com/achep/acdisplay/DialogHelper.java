@@ -42,6 +42,7 @@ import com.achep.acdisplay.fragments.SetupPermissionsDialog;
 import com.achep.acdisplay.fragments.FeedbackDialog;
 import com.achep.acdisplay.fragments.HelpDialog;
 import com.achep.acdisplay.iab.DonationFragment;
+import com.achep.headsup.R;
 
 import org.apache.commons.lang.builder.EqualsBuilder;
 import org.apache.commons.lang.builder.HashCodeBuilder;

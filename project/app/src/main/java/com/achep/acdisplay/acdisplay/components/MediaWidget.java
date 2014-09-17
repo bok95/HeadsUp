@@ -34,7 +34,7 @@ import android.widget.TextView;
 
 import com.achep.acdisplay.AsyncTask;
 import com.achep.acdisplay.Config;
-import com.achep.acdisplay.R;
+import com.achep.headsup.R;
 import com.achep.acdisplay.acdisplay.AcDisplayFragment2;
 import com.achep.acdisplay.acdisplay.BackgroundFactoryThread;
 import com.achep.acdisplay.services.media.MediaController;

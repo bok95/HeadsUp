@@ -33,7 +33,7 @@ import android.widget.Toast;
 import com.achep.acdisplay.App;
 import com.achep.acdisplay.Build;
 import com.achep.acdisplay.DialogHelper;
-import com.achep.acdisplay.R;
+import com.achep.headsup.R;
 import com.achep.acdisplay.utils.ToastUtils;
 
 /**

@@ -23,7 +23,7 @@ import android.content.Context;
 import android.support.annotation.NonNull;
 
 import com.achep.acdisplay.Config;
-import com.achep.acdisplay.R;
+import com.achep.headsup.R;
 import com.achep.acdisplay.services.BathService;
 import com.achep.acdisplay.utils.PowerUtils;
 

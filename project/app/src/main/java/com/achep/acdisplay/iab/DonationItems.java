@@ -21,7 +21,7 @@ package com.achep.acdisplay.iab;
 
 import android.content.res.Resources;
 
-import com.achep.acdisplay.R;
+import com.achep.headsup.R;
 
 /**
  * Created by achep on 07.05.14 for AcDisplay.

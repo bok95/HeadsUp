@@ -23,7 +23,7 @@ import android.os.Bundle;
 import android.preference.Preference;
 
 import com.achep.acdisplay.Config;
-import com.achep.acdisplay.R;
+import com.achep.headsup.R;
 
 /**
  * Development settings fragment.

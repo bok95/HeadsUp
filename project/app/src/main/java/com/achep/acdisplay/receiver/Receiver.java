@@ -16,7 +16,7 @@
  * Foundation, Inc., 51 Franklin Street, Fifth Floor, Boston,
  * MA  02110-1301, USA.
  */
-package com.achep.acdisplay.receiver;
+package com.achep.headsup.Receiver;
 
 import android.content.BroadcastReceiver;
 import android.content.Context;
@@ -25,7 +25,7 @@ import android.util.Log;
 
 import com.achep.acdisplay.App;
 import com.achep.acdisplay.Config;
-import com.achep.acdisplay.R;
+import com.achep.headsup.R;
 import com.achep.acdisplay.services.KeyguardService;
 import com.achep.acdisplay.services.SensorsDumpService;
 import com.achep.acdisplay.services.activemode.ActiveModeService;

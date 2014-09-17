@@ -26,7 +26,7 @@ import android.graphics.Canvas;
 import android.util.AttributeSet;
 
 import com.achep.acdisplay.Device;
-import com.achep.acdisplay.R;
+import com.achep.headsup.R;
 
 /**
  * {@inheritDoc}

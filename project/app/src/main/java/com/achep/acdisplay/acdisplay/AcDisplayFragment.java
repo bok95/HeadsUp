@@ -48,7 +48,7 @@ import android.widget.GridLayout;
 import com.achep.acdisplay.Build;
 import com.achep.acdisplay.Config;
 import com.achep.acdisplay.Device;
-import com.achep.acdisplay.R;
+import com.achep.headsup.R;
 import com.achep.acdisplay.acdisplay.components.NotifyWidget;
 import com.achep.acdisplay.acdisplay.components.Widget;
 import com.achep.acdisplay.animations.AnimationListenerAdapter;

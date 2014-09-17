@@ -20,7 +20,7 @@ package com.achep.acdisplay.iab.cryptocoin;
 
 import android.net.Uri;
 
-import com.achep.acdisplay.R;
+import com.achep.headsup.R;
 
 /**
  * An implementation of Bitcoin.

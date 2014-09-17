@@ -25,7 +25,7 @@ import android.widget.LinearLayout;
 
 import com.achep.acdisplay.Config;
 import com.achep.acdisplay.Operator;
-import com.achep.acdisplay.R;
+import com.achep.headsup.R;
 import com.achep.acdisplay.utils.ViewUtils;
 
 /**

@@ -33,7 +33,7 @@ import android.widget.TimePicker;
 
 import com.achep.acdisplay.Config;
 import com.achep.acdisplay.DialogHelper;
-import com.achep.acdisplay.R;
+import com.achep.headsup.R;
 import com.achep.acdisplay.utils.DateUtils;
 import com.achep.acdisplay.utils.MathUtils;
 

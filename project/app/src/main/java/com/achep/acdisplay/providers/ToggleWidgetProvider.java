@@ -32,7 +32,7 @@ import android.widget.RemoteViews;
 import com.achep.acdisplay.App;
 import com.achep.acdisplay.Build;
 import com.achep.acdisplay.Config;
-import com.achep.acdisplay.R;
+import com.achep.headsup.R;
 
 /**
  * Toggle widget provider.

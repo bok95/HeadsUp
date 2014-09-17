@@ -35,7 +35,7 @@ import android.util.AttributeSet;
 import android.view.View;
 import android.widget.TextView;
 
-import com.achep.acdisplay.R;
+import com.achep.headsup.R;
 
 // TODO: Bring RTL support
 public class BatteryMeterView extends TextView {

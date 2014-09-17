@@ -34,7 +34,7 @@ import android.util.Log;
 
 import com.achep.acdisplay.App;
 import com.achep.acdisplay.Build;
-import com.achep.acdisplay.R;
+import com.achep.headsup.R;
 import com.achep.acdisplay.activities.MainActivity;
 import com.achep.acdisplay.interfaces.IOnLowMemory;
 

@@ -18,9 +18,9 @@
   -->
 <manifest xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:tools="http://schemas.android.com/tools"
-    package="com.achep.acdisplay"
-    android:versionCode="31"
-    android:versionName="2.4.7">
+    package="com.achep.headsup"
+    android:versionCode="1"
+    android:versionName="1.0">
 
     <!--
         Normally replaced by build script, but needed to
@@ -77,7 +77,7 @@
         android:supportsRtl="true"
         android:theme="@style/AppTheme">
         <activity
-            android:name=".activities.MainActivity"
+            android:name="com.achep.acdisplay.activities.MainActivity"
             android:label="@string/app_name"
             android:launchMode="singleTask"
             android:uiOptions="splitActionBarWhenNarrow">
@@ -88,34 +88,34 @@
         </activity>
 
         <activity
-            android:name=".blacklist.activities.BlacklistActivity"
+            android:name="com.achep.acdisplay.blacklist.activities.BlacklistActivity"
             android:label="@string/blacklist"
             android:launchMode="singleTask"
             android:icon="@drawable/ic_activity_blacklist"
-            android:parentActivityName=".activities.MainActivity" />
+            android:parentActivityName="com.achep.acdisplay.activities.MainActivity" />
 
         <activity
-            android:name=".blacklist.activities.SubBlacklistActivity"
+            android:name="com.achep.acdisplay.blacklist.activities.SubBlacklistActivity"
             android:label="@string/blacklist_app_config"
             android:configChanges="orientation|keyboardHidden|screenSize"
             android:icon="@drawable/ic_activity_blacklist"
-            android:parentActivityName=".blacklist.activities.BlacklistActivity" />
+            android:parentActivityName="com.achep.acdisplay.blacklist.activities.BlacklistActivity" />
 
         <activity
-            android:name=".settings.Settings"
+            android:name="com.achep.acdisplay.settings.Settings"
             android:label="@string/settings"
             android:launchMode="singleTask"
             android:icon="@drawable/ic_activity_settings"
-            android:parentActivityName=".activities.MainActivity" />
+            android:parentActivityName="com.achep.acdisplay.activities.MainActivity" />
 
         <activity
-            android:name=".settings.SubSettings"
+            android:name="com.achep.acdisplay.settings.SubSettings"
             android:icon="@drawable/ic_activity_settings"
             android:configChanges="orientation|keyboardHidden|screenSize"
-            android:parentActivityName=".settings.Settings" />
+            android:parentActivityName="com.achep.acdisplay.settings.Settings" />
 
         <activity
-            android:name=".settings.Settings$ActiveModeSettingsActivity"
+            android:name="com.achep.acdisplay.settings.Settings$ActiveModeSettingsActivity"
             android:taskAffinity=""
             android:label="@string/settings_active_title"
             android:configChanges="orientation|keyboardHidden|screenSize"
@@ -129,7 +129,7 @@
         </activity>
 
         <activity
-            android:name=".settings.Settings$LockscreenSettingsActivity"
+            android:name="com.achep.acdisplay.settings.Settings$LockscreenSettingsActivity"
             android:taskAffinity=""
             android:label="@string/settings_lockscreen_title"
             android:configChanges="orientation|keyboardHidden|screenSize"
@@ -143,7 +143,7 @@
         </activity>
 
         <activity
-            android:name=".acdisplay.AcDisplayActivity"
+            android:name="com.achep.acdisplay.acdisplay.AcDisplayActivity"
             android:label="@string/app_name"
             android:launchMode="singleInstance"
             android:screenOrientation="nosensor"
@@ -154,7 +154,7 @@
 
         <!-- This is needed to access notifications and to control music. -->
         <service
-            android:name=".services.MediaService"
+            android:name="com.achep.acdisplay.services.MediaService"
             android:permission="android.permission.BIND_NOTIFICATION_LISTENER_SERVICE">
             <intent-filter>
                 <action android:name="android.service.notification.NotificationListenerService" />
@@ -163,7 +163,7 @@
         </service>
 
         <service
-            android:name=".services.AccessibilityService"
+            android:name="com.achep.acdisplay.services.AccessibilityService"
             android:permission="android.permission.BIND_ACCESSIBILITY_SERVICE">
             <intent-filter>
                 <action android:name="android.accessibilityservice.AccessibilityService" />
@@ -175,14 +175,14 @@
 
         <!-- Foreground service that may contain both Keyguard and Active mode. -->
         <service
-            android:name=".services.BathService"
+            android:name="com.achep.acdisplay.services.BathService"
             android:label="@string/service_bath" />
 
         <!--
             This is transparent activity for handling internal intents.
             -->
         <activity
-            android:name=".receiver.LocalReceiverActivity"
+            android:name="com.achep.acdisplay.receiver.LocalReceiverActivity"
             android:theme="@android:style/Theme.Translucent"
             android:launchMode="singleInstance"
             android:excludeFromRecents="true"
@@ -195,7 +195,7 @@
         </activity>
 
         <!-- A receiver to start some services. -->
-        <receiver android:name=".receiver.Receiver">
+        <receiver android:name="com.achep.acdisplay.receiver.Receiver">
             <intent-filter>
                 <action android:name="android.intent.action.ACTION_POWER_CONNECTED" />
                 <action android:name="android.intent.action.ACTION_POWER_DISCONNECTED" />
@@ -209,7 +209,7 @@
 
         <!-- Device admin rights. -->
         <receiver
-            android:name=".admin.AdminReceiver"
+            android:name="com.achep.acdisplay.admin.AdminReceiver"
             android:label="@string/access_device_admin_title"
             android:description="@string/access_device_admin_description"
             android:permission="android.permission.BIND_DEVICE_ADMIN">
@@ -222,7 +222,7 @@
         </receiver>
 
         <!-- Receiver for a widget -->
-        <receiver android:name=".providers.ToggleWidgetProvider">
+        <receiver android:name="com.achep.acdisplay.providers.ToggleWidgetProvider">
             <intent-filter>
                 <action android:name="android.appwidget.action.APPWIDGET_ENABLED" />
                 <action android:name="android.appwidget.action.APPWIDGET_DISABLED" />
@@ -237,7 +237,7 @@
 
         <!-- For sending logs as attachments -->
         <provider
-            android:name=".providers.LogAttachmentProvider"
+            android:name="com.achep.acdisplay.providers.LogAttachmentProvider"
             android:authorities="com.achep.acdisplay.logs"
             android:exported="true"
             tools:ignore="ExportedContentProvider" />
@@ -247,7 +247,7 @@
             http://powertoggles.com
             -->
         <receiver
-            android:name=".powertoggles.ToggleReceiver"
+            android:name="com.achep.acdisplay.powertoggles.ToggleReceiver"
             android:label="@string/app_name"
             android:icon="@drawable/ic_toggle_acdisplay"
             android:permission="com.painless.pc.permission.CONTROL_PLUGIN"

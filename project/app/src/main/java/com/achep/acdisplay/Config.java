@@ -37,6 +37,7 @@ import com.achep.acdisplay.services.SensorsDumpService;
 import com.achep.acdisplay.services.activemode.ActiveModeService;
 import com.achep.acdisplay.services.headsup.HeadsUpService;
 import com.achep.acdisplay.utils.AccessUtils;
+import com.achep.headsup.R;
 
 import org.apache.commons.lang.builder.EqualsBuilder;
 import org.apache.commons.lang.builder.HashCodeBuilder;

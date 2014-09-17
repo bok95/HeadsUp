@@ -29,7 +29,7 @@ import android.util.AttributeSet;
 import android.widget.TextView;
 
 import com.achep.acdisplay.Device;
-import com.achep.acdisplay.R;
+import com.achep.headsup.R;
 import com.achep.acdisplay.utils.DateUtils;
 import java.text.SimpleDateFormat;
 import java.util.Date;

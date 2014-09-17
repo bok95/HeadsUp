@@ -25,7 +25,7 @@ import android.preference.Preference;
 
 import com.achep.acdisplay.Config;
 import com.achep.acdisplay.Operator;
-import com.achep.acdisplay.R;
+import com.achep.headsup.R;
 
 import java.util.Collections;
 import java.util.HashSet;

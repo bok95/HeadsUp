@@ -35,7 +35,7 @@ import android.widget.RemoteViews;
 import android.widget.TextView;
 
 import com.achep.acdisplay.Device;
-import com.achep.acdisplay.R;
+import com.achep.headsup.R;
 import com.achep.acdisplay.notifications.Action;
 import com.achep.acdisplay.notifications.NotificationData;
 import com.achep.acdisplay.notifications.NotificationUtils;

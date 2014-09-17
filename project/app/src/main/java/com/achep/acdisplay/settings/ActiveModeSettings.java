@@ -24,7 +24,7 @@ import android.os.Bundle;
 import android.widget.Switch;
 
 import com.achep.acdisplay.Config;
-import com.achep.acdisplay.R;
+import com.achep.headsup.R;
 
 /**
  * Created by Artem on 09.02.14.

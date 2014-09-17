@@ -28,7 +28,7 @@ import android.view.View;
 import android.view.ViewGroup;
 
 import com.achep.acdisplay.Config;
-import com.achep.acdisplay.R;
+import com.achep.headsup.R;
 import com.achep.acdisplay.acdisplay.AcDisplayFragment;
 import com.achep.acdisplay.notifications.OpenNotification;
 import com.achep.acdisplay.utils.BitmapUtils;

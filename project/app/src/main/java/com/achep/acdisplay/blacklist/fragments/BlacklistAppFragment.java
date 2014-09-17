@@ -34,7 +34,7 @@ import android.widget.ScrollView;
 import android.widget.Switch;
 import android.widget.TextView;
 
-import com.achep.acdisplay.R;
+import com.achep.headsup.R;
 import com.achep.acdisplay.blacklist.Blacklist;
 import com.achep.acdisplay.blacklist.BlacklistEnabler;
 import com.achep.acdisplay.blacklist.options.NonClearableOption;

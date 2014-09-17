@@ -42,7 +42,7 @@ import android.widget.TextView;
 
 import com.achep.acdisplay.Device;
 import com.achep.acdisplay.DialogHelper;
-import com.achep.acdisplay.R;
+import com.achep.headsup.R;
 import com.achep.acdisplay.admin.AdminReceiver;
 import com.achep.acdisplay.utils.AccessUtils;
 import com.achep.acdisplay.utils.ToastUtils;

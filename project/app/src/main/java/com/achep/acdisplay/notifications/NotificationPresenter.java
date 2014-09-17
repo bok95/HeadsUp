@@ -36,7 +36,7 @@ import com.achep.acdisplay.Config;
 import com.achep.acdisplay.InactiveTimeHelper;
 import com.achep.acdisplay.Operator;
 import com.achep.acdisplay.Presenter;
-import com.achep.acdisplay.R;
+import com.achep.headsup.R;
 import com.achep.acdisplay.blacklist.AppConfig;
 import com.achep.acdisplay.blacklist.Blacklist;
 import com.achep.acdisplay.services.MediaService;

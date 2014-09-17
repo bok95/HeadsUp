@@ -22,12 +22,12 @@ import android.view.animation.AnimationUtils;
 
 import com.achep.acdisplay.App;
 import com.achep.acdisplay.Config;
-import com.achep.acdisplay.R;
+import com.achep.headsup.R;
 import com.achep.acdisplay.compat.TransitionManager;
 import com.achep.acdisplay.notifications.NotificationPresenter;
 import com.achep.acdisplay.notifications.NotificationUtils;
 import com.achep.acdisplay.notifications.OpenNotification;
-import com.achep.acdisplay.receiver.Receiver;
+import com.achep.headsup.Receiver.Receiver;
 import com.achep.acdisplay.utils.PendingIntentUtils;
 import com.achep.acdisplay.utils.PowerUtils;
 import com.achep.acdisplay.widgets.NotificationWidget;

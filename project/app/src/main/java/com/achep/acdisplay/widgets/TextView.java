@@ -24,7 +24,7 @@ import android.graphics.Typeface;
 import android.util.AttributeSet;
 
 import com.achep.acdisplay.Device;
-import com.achep.acdisplay.R;
+import com.achep.headsup.R;
 
 /**
  * Created by Artem on 29.01.14.

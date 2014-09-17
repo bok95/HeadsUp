@@ -18,6 +18,8 @@
  */
 package com.achep.acdisplay;
 
+import com.achep.headsup.BuildConfig;
+
 /**
  * Created by Artem on 30.12.13.
  */

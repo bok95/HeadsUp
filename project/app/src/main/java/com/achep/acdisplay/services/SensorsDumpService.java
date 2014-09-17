@@ -34,7 +34,7 @@ import android.util.Log;
 
 import com.achep.acdisplay.Build;
 import com.achep.acdisplay.Config;
-import com.achep.acdisplay.R;
+import com.achep.headsup.R;
 import com.achep.acdisplay.utils.FileUtils;
 import com.achep.acdisplay.utils.PowerUtils;
 

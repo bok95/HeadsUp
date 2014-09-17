@@ -33,7 +33,7 @@ import android.view.View.OnClickListener;
 import android.view.ViewConfiguration;
 import android.view.ViewGroup;
 
-import com.achep.acdisplay.R;
+import com.achep.headsup.R;
 
 public class ExpandHelper implements Gefingerpoken, OnClickListener {
     public interface Callback {

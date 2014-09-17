@@ -36,7 +36,7 @@ import android.widget.TextView;
 import com.achep.acdisplay.AsyncTask;
 import com.achep.acdisplay.Config;
 import com.achep.acdisplay.DialogHelper;
-import com.achep.acdisplay.R;
+import com.achep.headsup.R;
 import com.achep.acdisplay.RepositoryUrlBuilder;
 import com.achep.acdisplay.utils.FileUtils;
 import com.achep.acdisplay.utils.NetworkUtils;

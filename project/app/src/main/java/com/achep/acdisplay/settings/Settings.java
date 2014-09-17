@@ -43,7 +43,7 @@ import android.widget.TextView;
 
 import com.achep.acdisplay.Build;
 import com.achep.acdisplay.Config;
-import com.achep.acdisplay.R;
+import com.achep.headsup.R;
 
 import java.lang.reflect.InvocationTargetException;
 import java.lang.reflect.Method;

@@ -29,7 +29,7 @@ import android.view.ViewGroup;
 import android.view.WindowManager;
 
 import com.achep.acdisplay.Config;
-import com.achep.acdisplay.R;
+import com.achep.headsup.R;
 import com.achep.acdisplay.Timeout;
 import com.achep.acdisplay.acdisplay.components.MediaWidget;
 import com.achep.acdisplay.acdisplay.components.NotifyWidget;
