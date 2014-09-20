@@ -56,5 +56,6 @@ Import to Android Studio
 - Select: File -> Import project; and choose ./HeadsUp/project directory.
 - Wait until it done.
 - Enjoy ;-)
-- 
+
+
 [AcDisplay]:http://acdisplay.org
