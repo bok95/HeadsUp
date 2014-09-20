@@ -73,8 +73,8 @@ android {
 
     signingConfigs {
         release {
-            storeFile file(System.getenv("ACDISPLAY_SIGN_STORE_FILE") + "")
-            keyAlias System.getenv("ACDISPLAY_SIGN_KEY_ALIAS") + ""
+            storeFile file(System.getenv("HEADSUP_SIGN_STORE_FILE") + "")
+            keyAlias System.getenv("HEADSUP_SIGN_KEY_ALIAS") + ""
             // These two lines make gradle believe that the signingConfigs
             // section is complete. Without them, tasks like installRelease
             // will not be available!
@@ -87,7 +87,7 @@ android {
     SimpleDateFormat timeStampFormat = new SimpleDateFormat(
             "EEE MMMM dd HH:mm:ss zzz yyyy", Locale.ENGLISH);
     String timeStamp = timeStampFormat.format(Calendar.getInstance().getTime());
-    String playPublicKey = System.getenv("ACDISPLAY_GOOGLE_PLAY_PUBLIC_KEY");
+    String playPublicKey = System.getenv("HEADSUP_GOOGLE_PLAY_PUBLIC_KEY");
 
     // Google Play key is very important and better to check it twice
     // then to get a billion of Force Close reports.
@@ -187,7 +187,7 @@ project.task('askForPasswords') << {
         Console console = System.console();
         console.printf("\n\n\u001B[36m\u001B[1mSigning config\u001B[0m\n")
 
-        if ("true".equals(System.getenv("ACDISPLAY_USE_TEST_KEY") + "") 
+        if ("true".equals(System.getenv("HEADSUP_USE_TEST_KEY") + "") 
                 || "yes".equals(console.readLine("Use default test key [yes/no]: "))) {
             android.signingConfigs.release.storeFile = file("test-key.keystore")
             android.signingConfigs.release.keyAlias = "acdisplay-test-build"
