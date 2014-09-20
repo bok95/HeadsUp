@@ -116,10 +116,10 @@ public class NotificationPresenter implements NotificationList.OnNotificationLis
         public void onBlacklistChanged(
                 @NonNull AppConfig configNew,
                 @NonNull AppConfig configOld, int diff) {
-            boolean hiddenNew = configNew.forReal(configNew.isHidden());
-            boolean hiddenOld = configOld.forReal(configOld.isHidden());
-            boolean nonClearableEnabledNew = configNew.forReal(configNew.isNonClearableEnabled());
-            boolean nonClearableEnabledOld = configOld.forReal(configOld.isNonClearableEnabled());
+            boolean hiddenNew = configNew.isHidden();
+            boolean hiddenOld = configOld.isHidden();
+            boolean nonClearableEnabledNew = configNew.isNonClearableEnabled();
+            boolean nonClearableEnabledOld = configOld.isNonClearableEnabled();
 
             // Check if something important has changed.
             if (hiddenNew != hiddenOld || nonClearableEnabledNew != nonClearableEnabledOld) {
@@ -360,12 +360,12 @@ public class NotificationPresenter implements NotificationList.OnNotificationLis
     private boolean isValidForLocal(@NonNull OpenNotification o) {
         AppConfig config = mBlacklist.getAppConfig(o.getPackageName());
 
-        if (config.forReal(config.isHidden())) {
+        if (config.isHidden()) {
             // Do not display any notifications from this app.
             return false;
         }
 
-        if (!o.isClearable() && !config.forReal(config.isNonClearableEnabled())) {
+        if (!o.isClearable() && !config.isNonClearableEnabled()) {
             // Do not display non-clearable notification.
             return false;
         }

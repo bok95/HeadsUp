@@ -32,22 +32,20 @@
     <uses-sdk android:targetSdkVersion="18"
         tools:ignore="GradleOverrides,OldTargetApi" />
 
-    <!-- Needed to launch all services after the boot. -->
-    <uses-permission android:name="android.permission.RECEIVE_BOOT_COMPLETED" />
-
-    <uses-permission android:name="android.permission.SYSTEM_ALERT_WINDOW"/>
-
-    <!-- Needed to download latest FAQ from GitHub if network is available. -->
+    <uses-permission android:name="android.permission.VIBRATE" />
     <uses-permission android:name="android.permission.INTERNET" />
     <uses-permission android:name="android.permission.ACCESS_NETWORK_STATE" />
+    <uses-permission android:name="android.permission.RECEIVE_BOOT_COMPLETED" />
 
+    <!-- Needed to be able to show a popup above all notifications. -->
+    <uses-permission android:name="android.permission.SYSTEM_ALERT_WINDOW" />
+
+    <!-- Needed to be able to get notifications from system. -->
+    <permission android:name="android.permission.STATUS_BAR_SERVICE" />
     <uses-permission android:name="android.permission.BIND_ACCESSIBILITY_SERVICE" />
 
     <!-- Needed to provide donation via IAB. -->
     <uses-permission android:name="com.android.vending.BILLING" />
-
-    <!-- Needed to be able to get notifications from system. -->
-    <permission android:name="android.permission.STATUS_BAR_SERVICE" />
 
     <application
         android:name="com.achep.acdisplay.App"
