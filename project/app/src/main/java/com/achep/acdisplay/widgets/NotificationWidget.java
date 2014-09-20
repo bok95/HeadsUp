@@ -73,12 +73,11 @@ public class NotificationWidget extends LinearLayout implements NotificationView
     private TextView mSubtextTextView;
     private ViewGroup mMessageContainer;
     private ViewGroup mActionsContainer;
+    private View mActionsDivider;
 
     private OnClickListener mOnClickListener;
     private OpenNotification mNotification;
     private ViewGroup mContent;
-
-    private boolean mActionContainerAtTop = false;
 
     private ColorFilter mColorFilterDark;
 
@@ -143,25 +142,6 @@ public class NotificationWidget extends LinearLayout implements NotificationView
         mOnClickListener = l;
     }
 
-    /**
-     * Sets an alignment of action buttons.
-     *
-     * @param alignment may be {@link #ALIGN_TOP} or {@link #ALIGN_BOTTOM}
-     */
-    public void setActionButtonsAlignTop(boolean alignTop) {
-        mActionContainerAtTop = alignTop;
-
-        if (mContent != null && mActionsContainer != null) {
-            updateActionButtonsAlignment();
-        }
-    }
-
-    private void updateActionButtonsAlignment() {
-        removeView(mActionsContainer);
-        int pos = ViewUtils.indexOf(this, mContent) - 1;
-        addView(mActionsContainer, mActionContainerAtTop ? pos + 1 : pos);
-    }
-
     @Override
     protected void onFinishInflate() {
         super.onFinishInflate();
@@ -174,10 +154,10 @@ public class NotificationWidget extends LinearLayout implements NotificationView
         mWhenTextView = (TextView) findViewById(R.id.when);
         mSubtextTextView = (TextView) findViewById(R.id.subtext);
         mActionsContainer = (ViewGroup) findViewById(R.id.actions);
+        mActionsDivider = findViewById(R.id.actions_divider);
 
         if (mSmallIcon != null) mSmallIcon.setNotificationIndicateReadStateEnabled(false);
         mIcon.setNotificationIndicateReadStateEnabled(false);
-        updateActionButtonsAlignment();
     }
 
     private int getAverageRgb(int color) {
@@ -202,15 +182,17 @@ public class NotificationWidget extends LinearLayout implements NotificationView
      * or higher Android version.
      */
     @SuppressLint("NewApi")
-    private void setActions(OpenNotification osbn) {
+    protected void setActions(OpenNotification osbn) {
         Action[] actions = osbn.getNotificationData().actions;
         if (actions == null) {
             // Hide actions container. Do not delete all views
             // because we may re-use them later.
             mActionsContainer.setVisibility(GONE);
+            mActionsDivider.setVisibility(GONE);
             return;
         } else {
             mActionsContainer.setVisibility(VISIBLE);
+            mActionsDivider.setVisibility(VISIBLE);
         }
 
         int count = actions.length;
@@ -302,7 +284,7 @@ public class NotificationWidget extends LinearLayout implements NotificationView
      * @param lines an array of the lines of message.
      */
     @SuppressLint("CutPasteId")
-    private void setMessageLines(@Nullable CharSequence[] lines) {
+    protected void setMessageLines(@Nullable CharSequence[] lines) {
         if (lines == null) {
             // Hide message container. Do not delete all messages
             // because we may re-use them later.

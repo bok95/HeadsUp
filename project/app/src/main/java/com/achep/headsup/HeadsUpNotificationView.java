@@ -1,5 +1,6 @@
 package com.achep.headsup;
 
+import android.annotation.SuppressLint;
 import android.content.Context;
 import android.content.res.Configuration;
 import android.content.res.TypedArray;
@@ -10,6 +11,8 @@ import android.view.MotionEvent;
 import android.view.View;
 import android.view.ViewConfiguration;
 
+import com.achep.acdisplay.Device;
+import com.achep.acdisplay.notifications.OpenNotification;
 import com.achep.acdisplay.widgets.NotificationWidget;
 
 import dreamers.graphics.RippleDrawable;

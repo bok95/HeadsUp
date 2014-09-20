@@ -9,6 +9,7 @@ import android.content.res.TypedArray;
 import android.graphics.PixelFormat;
 import android.os.Handler;
 import android.support.annotation.NonNull;
+import android.util.DisplayMetrics;
 import android.view.ContextThemeWrapper;
 import android.view.Gravity;
 import android.view.LayoutInflater;
@@ -20,6 +21,8 @@ import android.view.animation.AnimationUtils;
 
 import com.achep.acdisplay.App;
 import com.achep.acdisplay.Config;
+import com.achep.acdisplay.Device;
+import com.achep.acdisplay.animations.AnimationListenerAdapter;
 import com.achep.acdisplay.compat.TransitionManager;
 import com.achep.acdisplay.notifications.NotificationPresenter;
 import com.achep.acdisplay.notifications.NotificationUtils;
@@ -48,37 +51,44 @@ public class HeadsUpManager implements
      */
     private static final long DURATION = 5000; // ms.
 
-    private static final int STATE_ADDED = 1;
-    private static final int STATE_EXIT_ANIM = 2;
-    private static final int STATE_REMOVED = 3;
-
     private final Config mConfig;
 
-    private Animation mUpdateAnimation;
+    private Animation mEnterAnimation;
     private Animation mExitAnimation;
 
     private HeadsUpView mRootView;
     private ViewGroup mContainer;
 
-    private ArrayList<NotificationWidget> mNotificationWidget;
-    private HashMap<NotificationWidget, Runnable> mRunnableMap;
+    private ArrayList<NotificationWidget> mWidgetList;
+    private HashMap<NotificationWidget, Runnable> mWidgetDecayMap;
     private Handler mHandler;
 
     private Context mContext;
     private boolean mAttached;
     private boolean mIgnoreShowing;
 
-    /**
-     * A runnable that contains of {@link #detach()} method.
-     */
-    private final Runnable mDetachRunnable =
-            new Runnable() {
+    private class DecayRunnable implements Runnable {
 
-                @Override
-                public void run() {
-                    detach();
-                }
-            };
+        private final NotificationWidget widget;
+
+        public DecayRunnable(NotificationWidget widget) {
+            this.widget = widget;
+        }
+
+        @Override
+        public void run() {
+            mWidgetList.remove(widget);
+            mWidgetDecayMap.remove(widget);
+
+            // Detach view from window, if there's
+            // no content.
+            if (mContainer.getChildCount() == 1) {
+                hideHeadsUp();
+            } else {
+                mContainer.removeView(widget);
+            }
+        }
+    }
 
     private BroadcastReceiver mReceiver =
             new Receiver() {
@@ -101,8 +111,8 @@ public class HeadsUpManager implements
     public HeadsUpManager() {
         mConfig = Config.getInstance();
 
-        mNotificationWidget = new ArrayList<>();
-        mRunnableMap = new HashMap<>();
+        mWidgetList = new ArrayList<>();
+        mWidgetDecayMap = new HashMap<>();
         mHandler = new Handler();
     }
 
@@ -110,8 +120,15 @@ public class HeadsUpManager implements
         mContext = context;
 
         // Load animations.
-        mUpdateAnimation = AnimationUtils.loadAnimation(context, R.anim.heads_up_update);
+        mEnterAnimation = AnimationUtils.loadAnimation(context, R.anim.heads_up_enter);
         mExitAnimation = AnimationUtils.loadAnimation(context, R.anim.heads_up_exit);
+        mExitAnimation.setAnimationListener(new AnimationListenerAdapter() {
+            @Override
+            public void onAnimationEnd(Animation animation) {
+                super.onAnimationEnd(animation);
+                detach();
+            }
+        });
 
         // Create root layouts.
         LayoutInflater inflater = (LayoutInflater) context
@@ -135,8 +152,6 @@ public class HeadsUpManager implements
         mContext = null;
         mRootView = null;
         mContainer = null;
-        mUpdateAnimation = null;
-        mExitAnimation = null;
     }
 
     @Override
@@ -145,6 +160,27 @@ public class HeadsUpManager implements
             @NonNull OpenNotification osbn, int event) {
         if (mIgnoreShowing || !PowerUtils.isScreenOn(mContext)) {
             return;
+        }
+
+        switch (event) {
+            case NotificationPresenter.EVENT_POSTED:
+                if (mConfig.isShownOnlyInFullscreen() && Device.hasJellyBeanMR1Api()) {
+                    // TODO: Write a detector for fullscreen mode.
+                    DisplayMetrics metrics = new DisplayMetrics();
+                    DisplayMetrics metricsReal = new DisplayMetrics();
+
+                    WindowManager wm = (WindowManager) mContext
+                            .getSystemService(Context.WINDOW_SERVICE);
+                    wm.getDefaultDisplay().getMetrics(metrics);
+                    wm.getDefaultDisplay().getRealMetrics(metricsReal);
+
+                    if (metrics.heightPixels != metricsReal.heightPixels) {
+                        return;
+                    }
+                }
+            case NotificationPresenter.EVENT_CHANGED:
+                mContainer.clearAnimation();
+                break;
         }
 
         NotificationWidget widget;
@@ -160,22 +196,19 @@ public class HeadsUpManager implements
                 } else {
                     TransitionManager.beginDelayedTransition(mContainer);
 
-                    widget = mNotificationWidget.get(i);
+                    widget = mWidgetList.get(i);
                     widget.setNotification(osbn);
 
                     // Delay dismissing this notification.
-                    Runnable runnable = mRunnableMap.get(widget);
+                    Runnable runnable = mWidgetDecayMap.get(widget);
                     mHandler.removeCallbacks(runnable);
                     mHandler.postDelayed(runnable, DURATION);
-
-                    // widget.startAnimation(mUpdateAnimation);
-                    // TODO: Notify user about this change via animation.
                 }
                 break;
             case NotificationPresenter.EVENT_REMOVED:
                 i = indexOf(osbn);
                 if (i != -1) {
-                    widget = mNotificationWidget.get(i);
+                    widget = mWidgetList.get(i);
                     removeImmediately(widget);
                 }
                 break;
@@ -187,13 +220,23 @@ public class HeadsUpManager implements
     }
 
     /**
+     * Dismisses given {@link NotificationWidget notification widget} and its notification.
+     *
+     * @param widget a widget to be dismissed.
+     * @see OpenNotification#dismiss()
+     */
+    public void dismiss(@NonNull NotificationWidget widget) {
+        widget.getNotification().dismiss();
+    }
+
+    /**
      * @return the position of given {@link com.achep.acdisplay.notifications.OpenNotification} in
-     * {@link #mNotificationWidget list}, or {@code -1} if not found.
+     * {@link #mWidgetList list}, or {@code -1} if not found.
      */
     public int indexOf(@NonNull OpenNotification n) {
-        final int size = mNotificationWidget.size();
+        final int size = mWidgetList.size();
         for (int i = 0; i < size; i++) {
-            OpenNotification n2 = mNotificationWidget.get(i).getNotification();
+            OpenNotification n2 = mWidgetList.get(i).getNotification();
             if (NotificationUtils.hasIdenticalIds(n, n2)) {
                 return i;
             }
@@ -201,12 +244,27 @@ public class HeadsUpManager implements
         return -1;
     }
 
-    private void removeImmediately(NotificationWidget widget) {
-        Runnable runnable = mRunnableMap.get(widget);
+    public void hideHeadsUp() {
+        mContainer.startAnimation(mExitAnimation);
+    }
 
-        // Run dismissing runnable immediately.
-        mHandler.removeCallbacks(runnable);
-        runnable.run();
+    public void resetHeadsUpDecayTimer(HeadsUpNotificationView widget) {
+        Runnable runnable = mWidgetDecayMap.get(widget);
+
+        if (runnable != null) {
+            mHandler.removeCallbacks(runnable);
+            mHandler.postDelayed(runnable, mConfig.getNotifyDecayTime());
+        }
+    }
+
+    private void removeImmediately(@NonNull NotificationWidget widget) {
+        Runnable runnable = mWidgetDecayMap.get(widget);
+
+        if (runnable != null) {
+            // Run dismissing runnable immediately.
+            mHandler.removeCallbacks(runnable);
+            runnable.run();
+        }
     }
 
     /**
@@ -216,32 +274,31 @@ public class HeadsUpManager implements
      * @param n the notification to show
      */
     private void postNotification(@NonNull OpenNotification n) {
-
-        String style = Config.getInstance().getTheme();
-        int styleRes = style.equals("dark")
+        // Get selected theme.
+        final String theme = Config.getInstance().getTheme();
+        final int themeRes = theme.equals("dark")
                 ? R.style.HeadsUp_Theme_Dark
                 : R.style.HeadsUp_Theme;
 
-        Context themedContext = new ContextThemeWrapper(mContext, styleRes);
-        TypedArray typedArray = themedContext.obtainStyledAttributes(new int[]{
-                R.styleable.Theme_headsUpNotificationLayout,
-        });
+        // Create a context with selected style.
+        Context context = new ContextThemeWrapper(mContext, themeRes);
+
+        // Get layout resource.
+        TypedArray typedArray = context.obtainStyledAttributes(
+                new int[] {R.styleable.Theme_headsUpNotificationLayout});
         final int layoutRes = typedArray.getInt(0, R.layout.heads_up_notification);
         typedArray.recycle();
+        typedArray = null;
 
         // Inflate notification widget.
-        LayoutInflater inflater = (LayoutInflater) themedContext
+        final LayoutInflater inflater = (LayoutInflater) context
                 .getSystemService(Context.LAYOUT_INFLATER_SERVICE);
         final HeadsUpNotificationView widget = (HeadsUpNotificationView) inflater
                 .inflate(layoutRes, mContainer, false);
 
-        // Fill widget and add to container.
+        // Setup widget
         widget.setHeadsUpManager(this);
         widget.setNotification(n);
-        widget.setActionButtonsAlignTop(false);
-        widget.setAlpha(0);
-        widget.setRotationX(-15);
-        widget.animate().alpha(1).rotationX(0).setDuration(300);
         widget.setOnClickListener(new NotificationWidget.OnClickListener() {
             @Override
             public void onClick(View v) {
@@ -254,36 +311,24 @@ public class HeadsUpManager implements
                 widget.getNotification().dismiss();
             }
         });
-        mNotificationWidget.add(widget);
+
         mContainer.addView(widget);
+        mWidgetList.add(widget);
+        widget.setAlpha(0);
+        widget.setRotationX(-15);
+        widget.animate().alpha(1).rotationX(0).setDuration(300);
 
         // Attaches heads-up to window.
         attach();
 
         // Timed-out runnable.
-        Runnable runnable = new Runnable() {
-            @Override
-            public void run() {
-                mContainer.removeView(widget);
-                mNotificationWidget.remove(widget);
-                mRunnableMap.remove(widget);
-
-                // Detach view from window, if there's
-                // no content.
-                if (mContainer.getChildCount() == 0) {
-                    // Leave some time for animation.
-                    mRootView.animate().alpha(0).setDuration(300).start();
-                    mHandler.postDelayed(mDetachRunnable, 300);
-                }
-            }
-        };
-
-        mRunnableMap.put(widget, runnable);
-        mHandler.postDelayed(runnable, (long) (DURATION * Math.sqrt(mRunnableMap.size())));
+        Runnable runnable = new DecayRunnable(widget);
+        mWidgetDecayMap.put(widget, runnable);
+        mHandler.postDelayed(runnable, mConfig.getNotifyDecayTime());
     }
 
     private void attach() {
-        mHandler.removeCallbacks(mDetachRunnable);
+        mContainer.clearAnimation();
         if (mAttached & (mAttached = true)) return;
 
         WindowManager wm = (WindowManager) mContext
@@ -292,12 +337,15 @@ public class HeadsUpManager implements
         WindowManager.LayoutParams lp = new WindowManager.LayoutParams(
                 WindowManager.LayoutParams.MATCH_PARENT,
                 WindowManager.LayoutParams.WRAP_CONTENT,
-                WindowManager.LayoutParams.TYPE_SYSTEM_ALERT,
-                WindowManager.LayoutParams.FLAG_NOT_TOUCH_MODAL
+                WindowManager.LayoutParams.TYPE_PRIORITY_PHONE,
+                WindowManager.LayoutParams.FLAG_NOT_FOCUSABLE
+                        | WindowManager.LayoutParams.FLAG_NOT_TOUCH_MODAL
                         | WindowManager.LayoutParams.FLAG_WATCH_OUTSIDE_TOUCH,
                 PixelFormat.TRANSLUCENT);
         lp.gravity = Gravity.TOP | Gravity.CENTER_HORIZONTAL;
         wm.addView(mRootView, lp);
+
+        mContainer.startAnimation(mEnterAnimation);
     }
 
     private void detach() {
@@ -309,30 +357,10 @@ public class HeadsUpManager implements
 
         // Clean everything.
         mHandler.removeCallbacksAndMessages(null);
+        mContainer.clearAnimation();
         mContainer.removeAllViews();
-        mNotificationWidget.clear();
-        mRunnableMap.clear();
+        mWidgetList.clear();
+        mWidgetDecayMap.clear();
     }
 
-    public void hideHeadsUp() {
-        detach();
-    }
-
-    public void resetHeadsUpDecayTimer(HeadsUpNotificationView widget) {
-
-        // Delay dismissing this notification.
-        Runnable runnable = mRunnableMap.get(widget);
-        mHandler.removeCallbacks(runnable);
-        mHandler.postDelayed(runnable, DURATION);
-    }
-
-    /**
-     * Dismisses given {@link NotificationWidget notification widget} and its notification.
-     *
-     * @param widget a widget to be dismissed.
-     * @see OpenNotification#dismiss()
-     */
-    public void dismiss(NotificationWidget widget) {
-        widget.getNotification().dismiss();
-    }
 }
