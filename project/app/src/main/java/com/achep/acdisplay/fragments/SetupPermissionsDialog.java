@@ -82,7 +82,7 @@ public class SetupPermissionsDialog extends DialogFragment {
         ArrayList<Item> items = new ArrayList<>();
 
         if (!AccessUtils.isNotificationAccessGranted(context)) {
-            items.add(new Item(R.drawable.stat_notify,
+            items.add(new Item(R.drawable.ic_notifications_light,
                     getString(R.string.access_notifications),
                     getString(R.string.access_notifications_description), new Runnable() {
                 @Override
