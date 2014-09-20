@@ -3,11 +3,14 @@ package com.achep.acdisplay.services;
 import android.accessibilityservice.AccessibilityServiceInfo;
 import android.app.Notification;
 import android.os.Parcelable;
+import android.util.Log;
 import android.view.accessibility.AccessibilityEvent;
 
 import com.achep.acdisplay.Device;
+import com.achep.acdisplay.fragments.HelpDialog;
 import com.achep.acdisplay.notifications.NotificationPresenter;
 import com.achep.acdisplay.notifications.OpenNotification;
+import com.achep.headsup.HeadsUpManager;
 
 /**
  * Created by Artem Chepurnoy on 06.09.2014.
@@ -15,6 +18,8 @@ import com.achep.acdisplay.notifications.OpenNotification;
 public class AccessibilityService extends android.accessibilityservice.AccessibilityService {
 
     public static boolean isRunning;
+
+    private HeadsUpManager mManager = new HeadsUpManager();
 
     @Override
     public void onServiceConnected() {
@@ -25,6 +30,18 @@ public class AccessibilityService extends android.accessibilityservice.Accessibi
         setServiceInfo(info);
 
         isRunning = true;
+    }
+
+    @Override
+    public void onCreate() {
+        super.onCreate();
+        mManager.start(this);
+    }
+
+    @Override
+    public void onDestroy() {
+        super.onDestroy();
+        mManager.stop();
     }
 
     @Override
