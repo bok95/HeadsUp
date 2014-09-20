@@ -22,7 +22,7 @@
     android:orientation="vertical">
 
     <TextView
-        android:id="@+id/normal_timeout_title"
+        android:id="@+id/message"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginTop="8dp"
@@ -30,12 +30,12 @@
         style="?textAppearanceDialogMessage" />
 
     <TextView
-        android:id="@+id/normal_timeout_value"
+        android:id="@+id/value"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_alignParentEnd="true"
         android:layout_alignParentRight="true"
-        android:layout_below="@id/normal_timeout_title"
+        android:layout_below="@id/message"
         android:minHeight="32dp"
         android:minWidth="55sp"
         android:padding="4dp"
@@ -43,41 +43,11 @@
         style="?textAppearanceDialogInfo" />
 
     <SeekBar
-        android:id="@+id/normal_timeout_seekbar"
+        android:id="@+id/seek"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:layout_below="@id/normal_timeout_title"
-        android:layout_toStartOf="@id/normal_timeout_value"
-        android:layout_toLeftOf="@id/normal_timeout_value" />
-
-    <TextView
-        android:id="@+id/short_timeout_title"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_below="@id/normal_timeout_value"
-        android:layout_marginTop="16dp"
-        android:text="@string/preference_timeout_short"
-        style="?textAppearanceDialogMessage" />
-
-    <TextView
-        android:id="@+id/short_timeout_value"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_alignParentEnd="true"
-        android:layout_alignParentRight="true"
-        android:layout_below="@id/short_timeout_title"
-        android:minHeight="32dp"
-        android:minWidth="55sp"
-        android:padding="4dp"
-        android:gravity="center_vertical"
-        style="?textAppearanceDialogInfo" />
-
-    <SeekBar
-        android:id="@+id/short_timeout_seekbar"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:layout_below="@id/short_timeout_title"
-        android:layout_toStartOf="@id/short_timeout_value"
-        android:layout_toLeftOf="@id/short_timeout_value" />
+        android:layout_below="@id/message"
+        android:layout_toStartOf="@id/value"
+        android:layout_toLeftOf="@id/value" />
 
 </RelativeLayout>

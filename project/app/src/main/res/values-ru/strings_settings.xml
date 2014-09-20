@@ -19,104 +19,41 @@
   -->
 <resources>
 
-    <!-- Settings -->
+    <!--
+        Settings
+        -->
+
     <string name="settings">Настройки</string>
     <string name="settings_multi_list_divider">,&#160;</string>
     <string name="settings_unknown_value">Неизвестное значение</string>
 
-    <!-- Placeholder -->
+    <!--
+        Placeholder
+        -->
+
     <string name="settings_placeholder_title">Заглушка</string>
     <string name="settings_placeholder_summary">Место для будущих опций и возможностей.</string>
 
-    <!-- Headers -->
-    <string name="settings_lockscreen_title">Экран блокировки</string>
-    <string name="settings_active_title">Активный режим</string>
-    <string name="settings_heads_up_title">Всплывающие уведомления</string>
+    <!--
+        Categories
+        -->
+
+    <string name="settings_notifies_category">Уведомления</string>
+    <string name="settings_other_category">Прочее</string>
+
+    <string name="settings_theme_title">Тема оформления</string>
+    <string name="settings_theme_summary">Установлена %1$s тема оформления.</string>
+    <string name="settings_notify_min_priority_title">Минимальный приоритет</string>
+    <string name="settings_notify_min_priority_summary">Показываются уведомления с приоритетом %1$s или выше.</string>
+    <string name="settings_notify_decay_time_title">Задержка отклонения уведомления</string>
+    <string name="settings_notify_decay_time_dialog">Задержка отклонения уведомления</string>
+    <string name="settings_notify_decay_time_summary">Уведомление автоматически отклоняется через %1$s сек. после появления.</string>
+    <string name="settings_only_in_fullscreen_title">Только в полноэкранном режиме</string>
     <string name="settings_app_settings_title">Приложения</string>
-    <string name="settings_notification_title">Уведомления</string>
-    <string name="settings_interface_title">Интерфейс</string>
-    <string name="settings_more_title">Ещё…</string>
-    <string name="settings_dev_title">Для разработчиков</string>
-
-    <!-- Lockscreen -->
-    <string name="settings_lockscreen_description">Изменить стандартный экран блокировки на приложение AcDisplay. Эта функция может работать нестабильно.</string>
-
-    <!-- Active mode -->
-    <string name="settings_active_description">Активный режим пробуждает устройство тогда, когда вам это нужно. Вы можете взглянуть на время или уведомления, просто достав устройство из кармана. Эта функция не блокирует переход в спящий режим - вы не должны заметить существенной разницы в потреблении заряда батареи.</string>
-    <string name="settings_active_enabled_when_notification_list_empty_title">Пока нет уведомлений</string>
-    <string name="settings_active_enabled_when_notification_list_empty_on">Активный режим включен вне зависимости от наличия текущих уведомлений.</string>
-    <string name="settings_active_enabled_when_notification_list_empty_off">Активный режим временно отключается, пока текущий список уведомлений пуст.</string>
-
-    <!-- Heads up -->
-    <string name="settings_heads_up_description">Показывает новые уведомления в виде всплывающих окон.</string>
-    <string name="settings_heads_up_style_title">Тема</string>
-    <string name="settings_heads_up_style_summary">Текущая тема: %1$s</string>
-
-    <!-- Notifications -->
-    <string name="settings_wake_up_on_notification_title">Просыпаться от уведомления</string>
-    <string name="settings_low_priority_notifications_title">Не важные уведомления</string>
-    <string name="settings_low_priority_notifications_on">Все уведомления отображаются.</string>
-    <string name="settings_low_priority_notifications_off">Уведомления, имеющие низкий приоритет, не отображаются.\nПример: погода от Google Now.</string>
-
-    <!-- Interface -->
-    <string name="settings_full_screen_title">Полноэкранный режим</string>
-    <string name="settings_use_wallpaper_title">Использовать обои</string>
-    <string name="settings_use_wallpaper_on">Обои с вашего рабочего стола используются в качестве фона.</string>
-    <string name="settings_use_wallpaper_off">Цельный чёрный фон.</string>
-    <string name="settings_shadow_toggle_title">Отображать тени</string>
-    <string name="settings_shadow_toggle_on">Отображать тени под элементами (отключите для повышения производительности).</string>
-    <string name="settings_dynamic_background_title">Динамический фон</string>
-    <string name="settings_dynamic_background_summary">Используется как фон: %1$s</string>
-    <string name="settings_dynamic_background_disabled">Отключен</string>
-    <string name="settings_status_battery_always_visible">Прикрепить состояние батареи</string>
-    <string name="settings_status_battery_always_visible_off">Состояние батареи показывается при зарядке или низком уровне заряда.</string>
-    <string name="settings_mirrored_timeout_progress_bar_title">Зеркальный индикатор таймаута</string>
-    <string name="settings_mirrored_timeout_progress_bar_on">Индикатор времени таймаута уменьшается с двух сторон к центру.</string>
-    <string name="settings_mirrored_timeout_progress_bar_off">Индикатор времени таймаута уменьшается слева направо.</string>
-    <string name="settings_notify_circled_icon_title">Круговая иконка уведомления</string>
-    <string name="settings_notify_circled_icon_on">Большая иконка уведомления вписана в круг.</string>
-    <string name="settings_unlock_animation_title">Анимация разблокировки</string>
-
-    <!-- Development -->
-    <string name="settings_dev_sensors_dump_title">Сохранять данные с сенсоров</string>
-    <string name="settings_dev_sensors_dump_on">Непрерывно сохраняет состояние устройства и данные с сенсоров в файл.</string>
-    <string name="settings_dev_sensors_dump_send_title">Отправить сохраненные данные</string>
-
-    <!-- More… -->
-    <string name="settings_only_while_charging_title">Только во время зарядки</string>
-    <string name="settings_only_while_charging_on">Приложение активно только во врямя зарядки. Это также относится к таким функциям, как экран блокировки или активный режим.</string>
-    <string name="settings_only_while_charging_off">Приложение активно всегда.</string>
-    <string name="settings_inactive_hours_title">Неактивное время</string>
-    <string name="settings_inactive_hours_disabled">Отключено</string>
-    <string name="settings_inactive_hours_enabled">От %1$s до %2$s.</string>
-    <string name="settings_timeout_title">Спящий режим</string>
-    <string name="settings_timeout_summary">После %1$s / %2$s секунд бездействия.</string>
-    <string name="settings_icon_size_title">Размер иконок</string>
-    <string name="settings_icon_size_summary">Текущий размер иконок: %1$s dpi.</string>
-    <!-- Behavior -->
-    <string name="settings_behavior_category">Поведение</string>
-    <string name="settings_lock_on_dismiss_last_notify_title">Выкл. экран после удал. посл. уведомления</string>
-    <string name="settings_lock_on_dismiss_last_notify_on">Экран выключается при удалении последнего уведомления.</string>
-    <string name="settings_lock_on_dismiss_last_notify_off">Экран остается включенным после удаления последнего уведомления.</string>
-    <string name="settings_widget_pinnable_title">Прикрепляемые уведомления</string>
-    <string name="settings_widget_pinnable_on">Уведомление остается развернутым на несколько секунд после касания.</string>
-
-    <!-- Preference: Inactive hours -->
-    <string name="preference_inactive_hours_enabled">Использовать неактивное время</string>
-    <string name="preference_inactive_hours_from"><![CDATA[
-        от:<br/><b><font color="#ffffff">%1$s</font></b>
-    ]]></string>
-    <string name="preference_inactive_hours_to"><![CDATA[
-        до:<br/><b><font color="#ffffff">%1$s</font></b>
-    ]]></string>
+    <string name="settings_app_settings_summary">Настройка каждого приложения.</string>
 
     <!-- Preference: Sleep timeouts -->
-    <string name="preference_timeout_normal">При запуске или смене выбраного уведомления</string>
-    <string name="preference_timeout_short">После касания экрана в неактивном месте</string>
+    <string name="preference_timeout_normal">Автоматически отклонить уведомление после:</string>
     <string name="preference_timeout_sec">%1$s сек.</string>
-
-    <!-- Preference: Icon size -->
-    <string name="preference_icon_size_message">Измените размер иконок уведомлений:</string>
-    <string name="preference_icon_size_dpi">%1$s dpi.</string>
 
 </resources>

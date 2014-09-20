@@ -130,7 +130,7 @@ public class HelpDialog extends DialogFragment implements AsyncTask.DownloadText
     @Override
     public Dialog onCreateDialog(Bundle savedInstanceState) {
         View view = new DialogHelper.Builder(getActivity())
-                .setIcon(R.drawable.ic_dialog_help)
+                .setIcon(R.drawable.ic_help_light)
                 .setTitle(R.string.help)
                 .setView(R.layout.fragment_help)
                 .createCommonView();

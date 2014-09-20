@@ -90,7 +90,7 @@ public class DonationFragment extends DialogFragment {
         assert activity != null;
 
         View view = new DialogHelper.Builder(activity)
-                .setIcon(R.drawable.ic_dialog_donation)
+                .setIcon(R.drawable.ic_donation_light)
                 .setTitle(R.string.donation_title)
                 .setView(R.layout.donation_dialog)
                 .createSkeletonView();

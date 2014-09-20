@@ -33,7 +33,7 @@ public class RepositoryUrlBuilder {
     public static final String ACDISPLAY_MODULE_NAME = "app";
 
     private static final String USERNAME = "AChep";
-    private static final String PROJECT = "AcDisplay";
+    private static final String PROJECT = "HeadsUp";
     private static final String FORMATTER = "https://%1$s/%2$s/%3$s/%4$s/";
 
     private String mBranch;

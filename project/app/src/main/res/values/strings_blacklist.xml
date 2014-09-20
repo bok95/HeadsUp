@@ -25,11 +25,7 @@
 
     <!-- Hide from AcDisplay -->
     <string name="blacklist_app_hide_title">Hide</string>
-    <string name="blacklist_app_hide_summary">This app\'s notifications won\'t be displayed.</string>
-
-    <!-- Do not turn on -->
-    <string name="blacklist_app_restricted_title">Silent</string>
-    <string name="blacklist_app_restricted_summary">Don\'t wake up on its notification posted.</string>
+    <string name="blacklist_app_hide_summary">This app\'s notifications won\'t be shown.</string>
 
     <!-- Show non-clearable notifications -->
     <string name="blacklist_app_non_clearable_title">Non-clearable notifies</string>

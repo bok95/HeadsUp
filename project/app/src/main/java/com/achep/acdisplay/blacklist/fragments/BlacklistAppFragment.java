@@ -40,7 +40,6 @@ import com.achep.acdisplay.blacklist.BlacklistEnabler;
 import com.achep.acdisplay.blacklist.options.NonClearableOption;
 import com.achep.acdisplay.blacklist.options.HideOption;
 import com.achep.acdisplay.blacklist.options.Option;
-import com.achep.acdisplay.blacklist.options.RestrictOption;
 import com.achep.acdisplay.utils.ViewUtils;
 
 /**
@@ -94,7 +93,6 @@ public class BlacklistAppFragment extends Fragment {
         mEnabler = new BlacklistEnabler(activity, switch_, packageName);
         mOptions = new Option[] {
                 new HideOption(activity, new CheckBox(activity), blacklist, mEnabler),
-                new RestrictOption(activity, new CheckBox(activity), blacklist, mEnabler),
                 new NonClearableOption(activity, new CheckBox(activity), blacklist, mEnabler)
         };
     }

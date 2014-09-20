@@ -116,7 +116,7 @@ public class NotificationWidget extends LinearLayout implements NotificationView
         TypedArray a = context.obtainStyledAttributes(attrs, R.styleable.NotificationWidget);
         mActionLayoutRes = a.getResourceId(
                 R.styleable.NotificationWidget_actionItemLayout,
-                R.layout.widget_notification_action);
+                R.layout.heads_up_notification_action);
         mMessageMaxLines = a.getInt(R.styleable.NotificationWidget_messageMaxLines, 4);
         mMessageLayoutRes = a.getResourceId(
                 R.styleable.NotificationWidget_messageItemLayout,

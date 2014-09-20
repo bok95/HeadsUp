@@ -31,10 +31,10 @@
         <a href="http://developer.android.com/tools/support-library/index.html">Android Support Library</a>,
         <a href="http://commons.apache.org/">Apache Commons</a>,
         <a href="http://www.androidicons.com/">Android icons by Opoloo</a>,
-        <a href="https://github.com/square/seismic">seismic by Square</a>,
         <a href="https://github.com/03uk/RippleDrawable">RippleDrawable by 03uk</a>
     ]]></string>
     <string name="about_message"><![CDATA[
+        HeadsUp is a free and <a href="https://www.github.com/AChep/HeadsUp">open source</a> app proudly based on <a href="http://acdisplay.org">AcDisplay</a>.<br/>
         Copyright 2013-2014 <a href="https://plus.google.com/+АртёмЧепурной">Artem Chepurnoy</a>. All Rights Reserved.<br/>
         <br/>
         Many thanks to those open source tools: %1$s and to all who
@@ -45,28 +45,5 @@
     <!-- Help -->
     <string name="help">Help</string>
     <string name="help_faq">Frequently asked questions</string>
-
-    <!-- News -->
-    <string name="news_message"><![CDATA[
-        Welcome to the new version of AcDisplay!
-        This update brings a completely new and unique design with a lot of new possibilities.
-        The design is more streamlined and is aimed at giving you the best possible experience!<br/>
-        <br/>
-        <b>One touch for all actions.</b><br/>
-        Unlocking the device, checking the notifications or performing an actions on them can be done with a single motion.<br/>
-        <br/>
-        <b>Unlock field is anywhere and everywhere.</b><br/>
-        Swipe anywhere on free space to unlock.
-    ]]></string>
-
-    <!-- Speech -->
-    <string name="speech_title" translatable="false">Artem Chepurnoy</string>
-    <string name="speech_message"><![CDATA[
-        Hello,<br/>
-        First of all I want to thank you for the amount of downloads and high ratings on Play Store.
-        Huge progress has been made in AcDisplay and a this could not have been done without the community. That is why AcDisplay is <a href="https://www.github.com/AChep/AcDisplay">open</a> for everyone. But I need some help from you.<br/>
-        This is my last school year and I would like to buy a notebook for future studies and to bring the world awesome software wherever I may be.
-        I would highly appreciate your help with it.
-    ]]></string>
 
 </resources>

@@ -128,7 +128,7 @@ public class FeedbackDialog extends DialogFragment implements Config.OnConfigCha
         assert activity != null;
 
         View view = new DialogHelper.Builder(activity)
-                .setIcon(getResources().getDrawable(R.drawable.ic_dialog_mail))
+                .setIcon(getResources().getDrawable(R.drawable.ic_feedback_light))
                 .setTitle(getString(R.string.feedback))
                 .setView(R.layout.fragment_dialog_feedback)
                 .createSkeletonView();

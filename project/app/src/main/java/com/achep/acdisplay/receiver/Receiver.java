@@ -16,7 +16,7 @@
  * Foundation, Inc., 51 Franklin Street, Fifth Floor, Boston,
  * MA  02110-1301, USA.
  */
-package com.achep.headsup.Receiver;
+package com.achep.acdisplay.receiver;
 
 import android.content.BroadcastReceiver;
 import android.content.Context;
@@ -26,10 +26,6 @@ import android.util.Log;
 import com.achep.acdisplay.App;
 import com.achep.acdisplay.Config;
 import com.achep.headsup.R;
-import com.achep.acdisplay.services.KeyguardService;
-import com.achep.acdisplay.services.SensorsDumpService;
-import com.achep.acdisplay.services.activemode.ActiveModeService;
-import com.achep.acdisplay.services.headsup.HeadsUpService;
 import com.achep.acdisplay.utils.ToastUtils;
 
 /**
@@ -43,14 +39,6 @@ public class Receiver extends BroadcastReceiver {
     public void onReceive(Context context, Intent intent) {
         String action = intent.getAction();
         switch (action) {
-            case Intent.ACTION_BOOT_COMPLETED:
-            case Intent.ACTION_POWER_CONNECTED:
-            case Intent.ACTION_POWER_DISCONNECTED:
-                ActiveModeService.handleState(context);
-                KeyguardService.handleState(context);
-                HeadsUpService.handleState(context);
-                SensorsDumpService.handleState(context);
-                break;
             case App.ACTION_ENABLE:
             case App.ACTION_DISABLE:
             case App.ACTION_TOGGLE:

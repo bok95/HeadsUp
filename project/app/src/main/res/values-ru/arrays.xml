@@ -26,16 +26,19 @@
         <item>Другое</item>
     </string-array>
 
-    <!-- Dynamic background -->
-    <string-array name="dynamic_background">
-        <item>Обложка трека</item>
-        <item>Иконка уведомления</item>
+    <!-- Notifies' priority -->
+    <string-array name="notify_priorities">
+        <item>Максимальный</item>
+        <item>Высокий</item>
+        <item>Нормальный</item>
+        <item>Низкий</item>
+        <item>Минимальный</item>
     </string-array>
 
     <!-- Heads up styling -->
-    <string-array name="heads_up_styles">
-        <item>Светлый</item>
-        <item>Тёмный</item>
+    <string-array name="themes">
+        <item>Светлая</item>
+        <item>Тёмная</item>
     </string-array>
 
 </resources>

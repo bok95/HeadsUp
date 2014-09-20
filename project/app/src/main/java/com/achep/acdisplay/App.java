@@ -22,10 +22,6 @@ import android.app.Application;
 import android.content.Context;
 
 import com.achep.acdisplay.blacklist.Blacklist;
-import com.achep.acdisplay.services.KeyguardService;
-import com.achep.acdisplay.services.SensorsDumpService;
-import com.achep.acdisplay.services.activemode.ActiveModeService;
-import com.achep.acdisplay.services.headsup.HeadsUpService;
 import com.achep.acdisplay.utils.ToastUtils;
 
 /**
@@ -37,17 +33,12 @@ public class App extends Application {
     public static final int ID_NOTIFY_TEST = 40;
     public static final int ID_NOTIFY_BATH = 50;
 
-    public static final String ACTION_BIND_MEDIA_CONTROL_SERVICE = "com.achep.acdisplay.BIND_MEDIA_CONTROL_SERVICE";
-
-    public static final String ACTION_ENABLE = "com.achep.acdisplay.ENABLE";
-    public static final String ACTION_DISABLE = "com.achep.acdisplay.DISABLE";
-    public static final String ACTION_TOGGLE = "com.achep.acdisplay.TOGGLE";
+    public static final String ACTION_ENABLE = "com.achep.headsup.ENABLE";
+    public static final String ACTION_DISABLE = "com.achep.headsup.DISABLE";
+    public static final String ACTION_TOGGLE = "com.achep.headsup.TOGGLE";
 
     public static final String ACTION_EAT_HOME_PRESS_START = "com.achep.acdisplay.EAT_HOME_PRESS_START";
     public static final String ACTION_EAT_HOME_PRESS_STOP = "com.achep.acdisplay.EAT_HOME_PRESS_STOP";
-
-    public static final String ACTION_INTERNAL_TIMEOUT = "TIMEOUT";
-    public static final String ACTION_INTERNAL_PING_SENSORS = "PING_SENSORS";
 
     @Override
     public void onCreate() {
@@ -55,13 +46,6 @@ public class App extends Application {
         Blacklist.getInstance().init(this);
 
         super.onCreate();
-
-        // Launch keyguard and (or) active mode on
-        // app launch.
-        KeyguardService.handleState(this);
-        ActiveModeService.handleState(this);
-        HeadsUpService.handleState(this);
-        SensorsDumpService.handleState(this);
     }
 
     @Override

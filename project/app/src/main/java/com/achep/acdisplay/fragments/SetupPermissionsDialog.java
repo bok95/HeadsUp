@@ -21,9 +21,7 @@ package com.achep.acdisplay.fragments;
 import android.app.AlertDialog;
 import android.app.Dialog;
 import android.app.DialogFragment;
-import android.app.admin.DevicePolicyManager;
 import android.content.ActivityNotFoundException;
-import android.content.ComponentName;
 import android.content.Context;
 import android.content.Intent;
 import android.graphics.drawable.Drawable;
@@ -43,7 +41,6 @@ import android.widget.TextView;
 import com.achep.acdisplay.Device;
 import com.achep.acdisplay.DialogHelper;
 import com.achep.headsup.R;
-import com.achep.acdisplay.admin.AdminReceiver;
 import com.achep.acdisplay.utils.AccessUtils;
 import com.achep.acdisplay.utils.ToastUtils;
 
@@ -81,28 +78,6 @@ public class SetupPermissionsDialog extends DialogFragment {
     private Item[] buildItems() {
         Context context = getActivity();
         ArrayList<Item> items = new ArrayList<>();
-
-        if (!AccessUtils.isDeviceAdminAccessGranted(context)) {
-            items.add(new Item(R.drawable.stat_lock,
-                    getString(R.string.access_device_admin),
-                    getString(R.string.access_device_admin_description), new Runnable() {
-                @Override
-                public void run() {
-                    Context context = getActivity();
-                    ComponentName admin = new ComponentName(context, AdminReceiver.class);
-                    Intent intent = new Intent()
-                            .setAction(DevicePolicyManager.ACTION_ADD_DEVICE_ADMIN)
-                            .putExtra(DevicePolicyManager.EXTRA_DEVICE_ADMIN, admin);
-
-                    try {
-                        startActivity(intent);
-                    } catch (ActivityNotFoundException e) {
-                        ToastUtils.showLong(context, R.string.access_device_admin_grant_manually);
-                        Log.e(TAG, "Device admins activity not found.");
-                    }
-                }
-            }));
-        }
 
         if (!AccessUtils.isNotificationAccessGranted(context)) {
             items.add(new Item(R.drawable.stat_notify,

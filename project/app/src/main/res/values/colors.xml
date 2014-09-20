@@ -18,32 +18,13 @@
   ~ MA  02110-1301, USA.
   -->
 <resources>
-    <color name="selector_pressed_dark">#30CCCCCC</color>
-    <color name="selector_longpressed_dark">#CB0098CB</color>
-    <color name="selector_disabled_dark">#80000000</color>
-    <color name="selector_focused_dark">#4E31B3E4</color>
-
-    <!-- AcDisplay -->
-    <color name="keyguard_background">#F000</color>
-    <color name="keyguard_background_semi">#7000</color>
-
-    <color name="acdisplay_subtext_color">#9eee</color>
-
-    <color name="donation_normal">#b6cc45</color>
-    <color name="donation_purchased">#DFED47</color>
-
-    <!-- BatteryMeterView parameters -->
-    <color name="batterymeter_frame_color">#66FFFFFF</color><!-- 40% white -->
-    <color name="batterymeter_charge_color">#FFFFFFFF</color>
-    <color name="batterymeter_bolt_color">#B2000000</color><!-- 70% black -->
-    <color name="batterymeter_critical">#FFFF3300</color>
-    <color name="batterymeter_low">#FFFF3300</color>
-    <color name="batterymeter_full">#FFFFFFFF</color>
+    <color name="donation_normal">@color/primary_color_900</color>
+    <color name="donation_purchased">@color/primary_color</color>
 
     <!-- Material design: Blue Grey -->
-    <color name="primary_color">#607d8b</color>
-    <color name="primary_color_600">#546e7a</color>
-    <color name="primary_color_900">#263238</color>
+    <color name="primary_color">#00bcd4</color>
+    <color name="primary_color_600">#00acc1</color>
+    <color name="primary_color_900">#006064</color>
 
     <!-- Material design: text colors -->
     <color name="material_dark_primary_text">#DDFFFFFF</color>

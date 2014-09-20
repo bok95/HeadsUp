@@ -33,16 +33,13 @@ import android.util.Log;
 
 import com.achep.acdisplay.App;
 import com.achep.acdisplay.Config;
-import com.achep.acdisplay.InactiveTimeHelper;
 import com.achep.acdisplay.Operator;
-import com.achep.acdisplay.Presenter;
+import com.achep.headsup.HeadsUpManager;
 import com.achep.headsup.R;
 import com.achep.acdisplay.blacklist.AppConfig;
 import com.achep.acdisplay.blacklist.Blacklist;
 import com.achep.acdisplay.services.MediaService;
-import com.achep.acdisplay.services.activemode.sensors.ProximitySensor;
 import com.achep.acdisplay.utils.PackageUtils;
-import com.achep.acdisplay.utils.PowerUtils;
 
 import java.util.ArrayList;
 
@@ -80,41 +77,25 @@ public class NotificationPresenter implements NotificationList.OnNotificationLis
     private final Config mConfig;
     private final Blacklist mBlacklist;
 
+    private HeadsUpManager mHeadsUpManager;
+    private boolean mHeadsUpStarted;
+
     /**
      * Listens to config to update notification list when needed.
      */
     private class ConfigListener implements Config.OnConfigChangedListener {
 
+        private boolean headsUpStarted;
+
         @Override
         public void onConfigChanged(Config config, String key, Object value) {
-            boolean enabled;
             switch (key) {
-                case Config.KEY_NOTIFY_LOW_PRIORITY:
+                case Config.KEY_NOTIFY_MIN_PRIORITY:
                     handleLowPriorityNotificationsPreferenceChanged();
                     break;
-                case Config.KEY_UI_DYNAMIC_BACKGROUND_MODE:
-                    enabled = Operator.bitAnd((int) value, Config.DYNAMIC_BG_NOTIFICATION_MASK);
-                    for (OpenNotification n : mGList.list()) {
-                        NotificationData data = n.getNotificationData();
-
-                        if (enabled) {
-                            data.loadBackground(config.getContext(), n);
-                        } else {
-                            data.clearBackground();
-                        }
-                    }
-                    break;
-                case Config.KEY_UI_NOTIFY_CIRCLED_ICON:
-                    enabled = (boolean) value;
-                    for (OpenNotification n : mGList.list()) {
-                        NotificationData data = n.getNotificationData();
-
-                        if (enabled) {
-                            data.loadCircleIcon(n);
-                        } else {
-                            data.clearCircleIcon();
-                        }
-                    }
+                case Config.KEY_ENABLED:
+                    Context context = config.getContext().getApplicationContext();
+                    setHeadsUpEnabled(context, config.isEnabled());
                     break;
             }
         }
@@ -201,6 +182,7 @@ public class NotificationPresenter implements NotificationList.OnNotificationLis
         mListeners = new ArrayList<>();
         mGList = new NotificationList(null);
         mLList = new NotificationList(this);
+        mHeadsUpManager = new HeadsUpManager();
 
         mConfig = Config.getInstance();
         mConfig.registerListener(new ConfigListener());
@@ -216,10 +198,21 @@ public class NotificationPresenter implements NotificationList.OnNotificationLis
         return sNotificationPresenter;
     }
 
+    public void setHeadsUpEnabled(@NonNull Context context, final boolean enabled) {
+        if (mHeadsUpStarted != enabled) {
+            mHeadsUpStarted = enabled;
+
+            if (enabled) {
+                mHeadsUpManager.start(context);
+            } else {
+                mHeadsUpManager.stop();
+            }
+        }
+    }
+
     /**
      * Posts notification to global list, notifies every follower
-     * about this change, and tries to launch
-     * {@link com.achep.acdisplay.acdisplay.AcDisplayActivity}.
+     * about this change.
      * <p><i>
      *     To create {@link OpenNotification}, use
      *     {@link OpenNotification#newInstance(StatusBarNotification)} or
@@ -243,14 +236,6 @@ public class NotificationPresenter implements NotificationList.OnNotificationLis
 
             NotificationData data = n.getNotificationData();
             data.loadCircleIcon(n);
-            Config config = Config.getInstance();
-
-            // Selective load exactly what we need and nothing more.
-            // This will reduce RAM consumption for a bit (1% or so.)
-            if (Operator.bitAnd(
-                    config.getDynamicBackgroundMode(),
-                    Config.DYNAMIC_BG_NOTIFICATION_MASK))
-                data.loadBackground(context, n);
 
             localValid = isValidForLocal(n);
         }
@@ -262,11 +247,7 @@ public class NotificationPresenter implements NotificationList.OnNotificationLis
                 flags, FLAG_DONT_WAKE_UP);
 
         mGList.pushOrRemove(n, globalValid, flagIgnoreFollowers);
-        int result = mLList.pushOrRemove(n, localValid, flagIgnoreFollowers);
-
-        if (flagWakeUp && result == RESULT_SUCCESS) {
-            tryStartGui(context, n);
-        }
+        mLList.pushOrRemove(n, localValid, flagIgnoreFollowers);
     }
 
     /**
@@ -389,8 +370,7 @@ public class NotificationPresenter implements NotificationList.OnNotificationLis
             return false;
         }
 
-        if (o.getNotification().priority <= Notification.PRIORITY_LOW
-                && !mConfig.isLowPriorityNotificationsAllowed()) {
+        if (o.getNotification().priority < mConfig.getNotifyMinPriority()) {
             // Do not display low-priority notification.
             return false;
         }
@@ -416,40 +396,6 @@ public class NotificationPresenter implements NotificationList.OnNotificationLis
         return sbn != null
                 && sbn.getId() == App.ID_NOTIFY_INIT
                 && n.getPackageName().equals(PackageUtils.getName(context));
-    }
-
-    /**
-     * Starts {@link com.achep.acdisplay.acdisplay.AcDisplayActivity activity} if active display
-     * is enabled and screen is turned off and...
-     */
-    private boolean tryStartGui(Context context, OpenNotification n) {
-        if (!isTestNotification(context, n)) { // force test notification to be shown
-            if (!mConfig.isEnabled() || !mConfig.isNotifyWakingUp()
-                    // Inactive time
-                    || mConfig.isInactiveTimeEnabled()
-                    && InactiveTimeHelper.isInactiveTime(mConfig)
-                    // Only while charging
-                    || mConfig.isEnabledOnlyWhileCharging()
-                    && !PowerUtils.isPlugged(context)) {
-                // Don't turn screen on due to user settings.
-                return false;
-            }
-
-            if (ProximitySensor.isNear()) {
-                // Don't display while device is face down.
-                return false;
-            }
-
-            String packageName = n.getPackageName();
-            AppConfig config = mBlacklist.getAppConfig(packageName);
-            if (config.forReal(config.isRestricted())) {
-                // Don't display due to app settings.
-                return false;
-            }
-        }
-
-        Presenter.getInstance().start(context);
-        return true;
     }
 
     // //////////////////////////////////////////

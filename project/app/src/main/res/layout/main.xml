@@ -18,7 +18,16 @@
   -->
 <merge xmlns:android="http://schemas.android.com/apk/res/android">
 
-    <!-- Description and preview of AcDisplay fragment. -->
-    <include layout="@layout/main_content" />
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:fitsSystemWindows="true"
+        android:clipToPadding="false"
+        android:orientation="vertical">
+
+        <!-- Description and preview of AcDisplay fragment. -->
+        <include layout="@layout/main_content" />
+
+    </LinearLayout>
 
 </merge>

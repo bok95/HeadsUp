@@ -128,6 +128,7 @@ dependencies {
     compile fileTree(dir: 'src/main/libs', include: ['*.jar'], exclude: ['XposedBridgeApi*'])
     //noinspection GradleDependency,GradleDynamicVersion
     compile 'com.android.support:support-v4:19.+'
+    compile 'com.readystatesoftware.systembartint:systembartint:1.0.3'
 
     androidTestCompile('junit:junit:4.11')
     androidTestCompile('org.robolectric:robolectric:2.3') {

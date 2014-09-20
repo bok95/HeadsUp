@@ -79,16 +79,12 @@ public class TimeoutPreference extends DialogPreference implements
         View root = inflater.inflate(R.layout.preference_dialog_timeout, null);
         assert root != null;
 
-        mProgresses = new int[2];
+        mProgresses = new int[1];
         mGroups = new Group[mProgresses.length];
         mGroups[0] = new Group(
-                (SeekBar) root.findViewById(R.id.normal_timeout_seekbar),
-                (TextView) root.findViewById(R.id.normal_timeout_value),
-                "setTimeoutNormal", "getTimeoutNormal");
-        mGroups[1] = new Group(
-                (SeekBar) root.findViewById(R.id.short_timeout_seekbar),
-                (TextView) root.findViewById(R.id.short_timeout_value),
-                "setTimeoutShort", "getTimeoutShort");
+                (SeekBar) root.findViewById(R.id.seek),
+                (TextView) root.findViewById(R.id.value),
+                "setNotifyDecayTime", "getNotifyDecayTime");
 
         final int max = res.getInteger(R.integer.config_timeout_maxDurationMillis) / MULTIPLIER;
         mMin = res.getInteger(R.integer.config_timeout_minDurationMillis) / MULTIPLIER;

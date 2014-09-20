@@ -28,21 +28,13 @@ import android.graphics.Paint;
 import android.graphics.drawable.Drawable;
 import android.os.SystemClock;
 import android.service.notification.StatusBarNotification;
-import android.support.annotation.Nullable;
-import android.text.SpannableStringBuilder;
-import android.text.Spanned;
-import android.text.TextUtils;
-import android.text.style.ForegroundColorSpan;
-import android.text.style.UnderlineSpan;
 import android.util.Log;
 
 import com.achep.acdisplay.AsyncTask;
 import com.achep.acdisplay.Build;
 import com.achep.headsup.R;
-import com.achep.acdisplay.acdisplay.BackgroundFactoryThread;
 import com.achep.acdisplay.notifications.parser.Extractor;
 import com.achep.acdisplay.utils.BitmapUtils;
-import com.achep.acdisplay.utils.StringUtils;
 
 import java.lang.ref.WeakReference;
 import java.util.ArrayList;
@@ -56,7 +48,6 @@ public class NotificationData {
 
     public static final int ICON = 1;
     public static final int READ = 2;
-    public static final int BACKGROUND = 3;
 
     public CharSequence titleText;
     public CharSequence messageText;
@@ -69,7 +60,6 @@ public class NotificationData {
 
     private Bitmap icon;
     private Bitmap circleIcon;
-    private Bitmap background;
 
     public int dominantColor;
 
@@ -122,12 +112,7 @@ public class NotificationData {
         return circleIcon;
     }
 
-    public Bitmap getBackground() {
-        return background;
-    }
-
     public void recycle() {
-        AsyncTask.stop(mBackgroundLoader);
         AsyncTask.stop(mIconLoader);
 
         // All those bitmaps can be displayed at this moment.
@@ -167,14 +152,6 @@ public class NotificationData {
 
     private static final Extractor sExtractor = new Extractor();
     private IconLoaderThread mIconLoader;
-    private BackgroundFactoryThread mBackgroundLoader;
-    private BackgroundFactoryThread.Callback mBackgroundLoaderCallback =
-            new BackgroundFactoryThread.Callback() {
-                @Override
-                public void onBackgroundCreated(Bitmap bitmap) {
-                    setBackground(bitmap);
-                }
-            };
 
     public void markAsRead(boolean value) {
         if (isRead == (isRead = value)) return;
@@ -184,42 +161,6 @@ public class NotificationData {
     private void setIcon(Bitmap bitmap) {
         if (icon == (icon = bitmap)) return;
         notifyListeners(ICON);
-    }
-
-    public void setBackground(Bitmap bitmap) {
-        if (background == (background = bitmap)) return;
-        notifyListeners(BACKGROUND);
-    }
-
-    /**
-     * Asynchronously loads the background of notification.
-     *
-     * @param n Notification to load from.
-     * @see #clearBackground()
-     */
-    public void loadBackground(Context context, OpenNotification n) {
-        // Stop previous thread if it is still
-        // running.
-        AsyncTask.stop(mBackgroundLoader);
-
-        Bitmap bitmapIcon = n.getNotification().largeIcon;
-        if (bitmapIcon != null && !BitmapUtils.hasTransparentCorners(bitmapIcon)) {
-            mBackgroundLoader = new BackgroundFactoryThread(
-                    context, bitmapIcon, mBackgroundLoaderCallback);
-            mBackgroundLoader.executeOnExecutor(AsyncTask.THREAD_POOL_EXECUTOR);
-        }
-    }
-
-    /**
-     * Frees the background of this notification.
-     *
-     * @see #loadBackground(Context, OpenNotification)
-     */
-    public void clearBackground() {
-        if (background != null) {
-            background.recycle();
-            setBackground(null);
-        }
     }
 
     /**
@@ -236,8 +177,6 @@ public class NotificationData {
 
     /**
      * Frees the circle icon of this notification.
-     *
-     * @see #loadBackground(Context, com.achep.acdisplay.notifications.OpenNotification)
      */
     public void clearCircleIcon() {
         if (circleIcon != null) {
@@ -339,7 +278,7 @@ public class NotificationData {
             Canvas canvas = new Canvas(icon);
             canvas.drawCircle(radius, radius, radius, paint);
 
-            Drawable drawable = res.getDrawable(R.drawable.ic_dialog_bug);
+            Drawable drawable = res.getDrawable(R.drawable.ic_bug_light);
             drawable.setBounds(0, 0, size, size);
             drawable.draw(canvas);
 
