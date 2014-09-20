@@ -22,7 +22,7 @@
   <string name="close">Chiudi</string>
   <string name="later">Più Tardi</string>
   <string name="about_action">Informazioni su</string>
-  <string name="about_message"><![CDATA[         HeadsUp è un'app gratuita e <a href="https://www.github.com/AChep/HeadsUp"> open source</a> basata con orgoglio su <a href="http://acdisplay.org"> AcDisplay</a>. <br/>         Copyright 2013-2014 <a href="https://plus.google.com/+АртёмЧепурной"> Artem Chepurnoy</a>. Tutti i diritti riservati. <br/>         <br/> Ringrazio gli strumenti open source: %1$s e a tutti coloro che <a href="http://translate.acdisplay.org"> hanno aiutato con le traduzioni</a> o <a href="https://plus.google.com/102696863054832206920/posts/7wi3WfWGSfH"> donazioni</a>.     
+  <string name="about_message"><![CDATA[         HeadsUp è un\'app gratuita e <a href="https://www.github.com/AChep/HeadsUp"> open source</a> basata con orgoglio su <a href="http://acdisplay.org"> AcDisplay</a>. <br/>         Copyright 2013-2014 <a href="https://plus.google.com/+АртёмЧепурной"> Artem Chepurnoy</a>. Tutti i diritti riservati. <br/>         <br/> Ringrazio gli strumenti open source: %1$s e a tutti coloro che <a href="http://translate.acdisplay.org"> hanno aiutato con le traduzioni</a> o <a href="https://plus.google.com/102696863054832206920/posts/7wi3WfWGSfH"> donazioni</a>.     
         ]]></string>
   <string name="help">Guida</string>
   <string name="help_faq">Domande Frequenti</string>

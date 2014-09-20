@@ -21,7 +21,7 @@
 <resources>
   <string name="donation_action">Fai una donazione</string>
   <string name="donation_title">Fai una donazione allo sviluppatore</string>
-  <string name="donation_info"><![CDATA[         HeadsUp è un'app gratuita e <a href="https://www.github.com/AChep/HeadsUp"> open source</a>.         Potete mostrare il vostro apprezzamento e sostegno per lo sviluppo donando:     ]]></string>
+  <string name="donation_info"><![CDATA[         HeadsUp è un\'app gratuita e <a href="https://www.github.com/AChep/HeadsUp"> open source</a>.         Potete mostrare il vostro apprezzamento e sostegno per lo sviluppo donando:     ]]></string>
   <string name="donation_item_bought">Hai già effettuato la donazione.</string>
   <string name="donation_1">Un gelato</string>
   <string name="donation_4">Una tazza di caffè</string>
