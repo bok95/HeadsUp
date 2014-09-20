@@ -284,7 +284,8 @@ public class Config implements IOnLowMemory {
                     "setEnabled", "isEnabled", boolean.class));
             hashMap.put(KEY_UX_ONLY_IN_FULLSCREEN, new Option(
                     "setShownOnlyInFullscreen",
-                    "isShownOnlyInFullscreen", boolean.class));
+                    "isShownOnlyInFullscreen", boolean.class,
+                    android.os.Build.VERSION_CODES.JELLY_BEAN_MR1));
 
             mHashMapRef = new SoftReference<>(hashMap);
         }
