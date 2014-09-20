@@ -33,6 +33,7 @@ import android.util.Log;
 
 import com.achep.acdisplay.App;
 import com.achep.acdisplay.Config;
+import com.achep.acdisplay.Device;
 import com.achep.acdisplay.Operator;
 import com.achep.headsup.HeadsUpManager;
 import com.achep.headsup.R;
@@ -183,6 +184,11 @@ public class NotificationPresenter implements NotificationList.OnNotificationLis
         mGList = new NotificationList(null);
         mLList = new NotificationList(this);
         mHeadsUpManager = new HeadsUpManager();
+
+        if (!Device.hasJellyBeanMR2Api()) {
+            mGList.setMaximumSize(5);
+            mLList.setMaximumSize(5);
+        }
 
         mConfig = Config.getInstance();
         mConfig.registerListener(new ConfigListener());
