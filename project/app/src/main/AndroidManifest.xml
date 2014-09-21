@@ -37,6 +37,9 @@
     <uses-permission android:name="android.permission.ACCESS_NETWORK_STATE" />
     <uses-permission android:name="android.permission.RECEIVE_BOOT_COMPLETED" />
 
+    <!-- Needed to get the list of running activities. -->
+    <uses-permission android:name="android.permission.GET_TASKS" />
+
     <!-- Needed to be able to show a popup above all notifications. -->
     <uses-permission android:name="android.permission.SYSTEM_ALERT_WINDOW" />
 
