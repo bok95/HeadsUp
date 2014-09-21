@@ -22,6 +22,6 @@
     <integer name="config_default_notify_min_priority">0</integer>
     <integer name="config_default_notify_decay_time">5000</integer>
     <bool    name="config_default_ux_only_in_fullscreen">false</bool>
-    <bool name="config_default_ux_hide_on_touch_outside">true</bool>
+    <bool    name="config_default_ux_hide_on_touch_outside">false</bool>
     <string  name="config_default_ui_theme" translatable="false">light</string>
 </resources>
