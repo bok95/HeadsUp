@@ -19,19 +19,19 @@
   ~ MA  02110-1301, USA.
   -->
 <resources>
-  <string name="widget_toggle_enabled">Enabled</string>
-  <string name="widget_toggle_disabled">Disabled</string>
-  <string name="test_action">Send test notification</string>
-  <string name="test_notification_message">This is a sample notification.</string>
-  <string name="test_notification_message_large">Swipe left or right to dismiss.\nTouch to open.</string>
-  <string name="init_notification_text">Just dismiss this notification.</string>
-  <string name="remote_enable_acdisplay">HeadsUp is enabled.</string>
-  <string name="remote_disable_acdisplay">HeadsUp is disabled.</string>
-  <string name="compat_title">HeadsUp is running in compatibility mode:</string>
-  <string name="compat_notifications">Notifications cannot be dismissed nor grouped</string>
-  <string name="access_title">Required permissions:</string>
-  <string name="access_setup">Setup permissions</string>
-  <string name="access_notifications">Notifications</string>
-  <string name="access_notifications_description">Needed to get access to notifications.</string>
-  <string name="access_notifications_grant_manually">Go to Settings &gt; Security &gt; Notification access and check HeadsUp.</string>
+  <string name="widget_toggle_enabled">Aktiveret</string>
+  <string name="widget_toggle_disabled">Deaktiveret</string>
+  <string name="test_action">Send test underretning</string>
+  <string name="test_notification_message">Dette er et eksempel på en underretning.</string>
+  <string name="test_notification_message_large">Stryg til venstre eller højre for at afvise.\nTryk for at åbne.</string>
+  <string name="init_notification_text">Afvis blot denne underretning.</string>
+  <string name="remote_enable_acdisplay">HeadsUp er aktiveret.</string>
+  <string name="remote_disable_acdisplay">HeadsUp er deaktiveret.</string>
+  <string name="compat_title">HeadsUp kører i kompatibilitetstilstand:</string>
+  <string name="compat_notifications">Underretninger kan hverken blive afvist, eller grupperet</string>
+  <string name="access_title">Nødvendige tilladelser:</string>
+  <string name="access_setup">Opsætnings tilladelser</string>
+  <string name="access_notifications">Underretninger</string>
+  <string name="access_notifications_description">Nødvendigt for at få adgang til underretninger.</string>
+  <string name="access_notifications_grant_manually">Gå til Indstillinger &gt; Sikkerhed &gt; Underretningsadgang og afkryds HeadsUp.</string>
 </resources>

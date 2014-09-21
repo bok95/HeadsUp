@@ -33,6 +33,7 @@
   <string name="settings_notify_decay_time_title">Zeit bis zum automatischen Verwerfen.</string>
   <string name="settings_notify_decay_time_dialog">Zeit bis zum automatischen Verwerfen</string>
   <string name="settings_notify_decay_time_summary">Benachrichtigung wird %1$s sek. nach Erscheinen verworfen.</string>
+  <string name="settings_hide_on_touch_outside_title">Ausblenden wenn eine freie Stelle berührt wird</string>
   <string name="settings_only_in_fullscreen_title">Nur im Vollbildschirm</string>
   <string name="settings_app_settings_title">Apps</string>
   <string name="settings_app_settings_summary">Setzte individuelle Einstellung für Apps.</string>

@@ -22,16 +22,16 @@
   <string name="widget_toggle_enabled">Aktiverad</string>
   <string name="widget_toggle_disabled">Inaktiverad</string>
   <string name="test_action">Skicka testmeddelande</string>
-  <string name="test_notification_message">This is a sample notification.</string>
+  <string name="test_notification_message">Detta är ett exempelmeddelande.</string>
   <string name="test_notification_message_large">Swipe left or right to dismiss.\nTouch to open.</string>
-  <string name="init_notification_text">Just dismiss this notification.</string>
-  <string name="remote_enable_acdisplay">HeadsUp is enabled.</string>
-  <string name="remote_disable_acdisplay">HeadsUp is disabled.</string>
-  <string name="compat_title">HeadsUp is running in compatibility mode:</string>
-  <string name="compat_notifications">Notifications cannot be dismissed nor grouped</string>
-  <string name="access_title">Required permissions:</string>
-  <string name="access_setup">Setup permissions</string>
-  <string name="access_notifications">Notifications</string>
-  <string name="access_notifications_description">Needed to get access to notifications.</string>
+  <string name="init_notification_text">Avfärda detta meddelande.</string>
+  <string name="remote_enable_acdisplay">HeadsUp är aktiverat.</string>
+  <string name="remote_disable_acdisplay">HeadsUp är inaktiverad.</string>
+  <string name="compat_title">HeadsUp kör i kompatibilitetsläge:</string>
+  <string name="compat_notifications">Meddelanden kan inte avfärdas eller grupperade</string>
+  <string name="access_title">Behörigheter som krävs:</string>
+  <string name="access_setup">Ställa in behörigheter</string>
+  <string name="access_notifications">Meddelanden</string>
+  <string name="access_notifications_description">Behövs för att få tillgång till meddelanden.</string>
   <string name="access_notifications_grant_manually">Go to Settings &gt; Security &gt; Notification access and check HeadsUp.</string>
 </resources>

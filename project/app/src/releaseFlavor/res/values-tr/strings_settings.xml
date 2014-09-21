@@ -33,6 +33,7 @@
   <string name="settings_notify_decay_time_title">Zaman aşımını red et</string>
   <string name="settings_notify_decay_time_dialog">Zaman aşımını red et</string>
   <string name="settings_notify_decay_time_summary">Bildirim %1$s saniye sonra kaybolsun.</string>
+  <string name="settings_hide_on_touch_outside_title">Hide on touch outside</string>
   <string name="settings_only_in_fullscreen_title">Yalnızca tam ekran</string>
   <string name="settings_app_settings_title">Uygulamalar</string>
   <string name="settings_app_settings_summary">Her uygulama için ayrı tercih ayarlayın.</string>

@@ -19,17 +19,17 @@
   ~ MA  02110-1301, USA.
   -->
 <resources>
-  <string name="close">Close</string>
-  <string name="later">Later</string>
-  <string name="about_action">About</string>
+  <string name="close">Luk</string>
+  <string name="later">Senere</string>
+  <string name="about_action">Om</string>
   <string name="about_message"><![CDATA[
-        HeadsUp is a free and <a href="https://www.github.com/AChep/HeadsUp">open source</a> app proudly based on <a href="http://acdisplay.org">AcDisplay</a>.<br/>
-        Copyright 2013-2014 <a href="https://plus.google.com/+АртёмЧепурной">Artem Chepurnoy</a>. All Rights Reserved.<br/>
+        HeadsUp er en gratis og <a href="https://www.github.com/AChep/HeadsUp">open source</a> app stolt baseret på <a href="http://acdisplay.org">AcDisplay</a>.<br/>
+        Copyright 2013-2014 <a href="https://plus.google.com/+АртёмЧепурной">Artem Chepurnoy</a>. Alle rettigheder forbeholdt.<br/>
         <br/>
-        Many thanks to those open source tools: %1$s and to all who
-        <a href="http://translate.acdisplay.org">helped with translations</a> or
-        <a href="https://plus.google.com/102696863054832206920/posts/7wi3WfWGSfH">donated to me</a>.
+        Mange tak til disse open source værktøjer: %1$s og til alle dem som
+        <a href="http://translate.acdisplay.org">hjalp med oversættelserne</a> eller
+        <a href="https://plus.google.com/102696863054832206920/posts/7wi3WfWGSfH">donerede til mig</a>.
     ]]></string>
-  <string name="help">Help</string>
-  <string name="help_faq">Frequently asked questions</string>
+  <string name="help">Hjælp</string>
+  <string name="help_faq">Ofte stillede spørgsmål</string>
 </resources>

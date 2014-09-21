@@ -19,9 +19,9 @@
   ~ MA  02110-1301, USA.
   -->
 <resources>
-  <string name="close">Close</string>
-  <string name="later">Later</string>
-  <string name="about_action">About</string>
+  <string name="close">閉じる</string>
+  <string name="later">後</string>
+  <string name="about_action">概要</string>
   <string name="about_message"><![CDATA[
         HeadsUp is a free and <a href="https://www.github.com/AChep/HeadsUp">open source</a> app proudly based on <a href="http://acdisplay.org">AcDisplay</a>.<br/>
         Copyright 2013-2014 <a href="https://plus.google.com/+АртёмЧепурной">Artem Chepurnoy</a>. All Rights Reserved.<br/>
@@ -30,6 +30,6 @@
         <a href="http://translate.acdisplay.org">helped with translations</a> or
         <a href="https://plus.google.com/102696863054832206920/posts/7wi3WfWGSfH">donated to me</a>.
     ]]></string>
-  <string name="help">Help</string>
-  <string name="help_faq">Frequently asked questions</string>
+  <string name="help">ヘルプ</string>
+  <string name="help_faq">よくある質問（FAQ）</string>
 </resources>

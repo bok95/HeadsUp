@@ -19,23 +19,24 @@
   ~ MA  02110-1301, USA.
   -->
 <resources>
-  <string name="settings">Settings</string>
-  <string name="settings_multi_list_divider">,&#160;</string>
-  <string name="settings_unknown_value">Unknown value</string>
-  <string name="settings_placeholder_title">Placeholder</string>
-  <string name="settings_placeholder_summary">A place for future options.</string>
-  <string name="settings_notifies_category">Notifications</string>
-  <string name="settings_other_category">Other</string>
-  <string name="settings_theme_title">Theme</string>
-  <string name="settings_theme_summary">You have the %1$s theme set.</string>
-  <string name="settings_notify_min_priority_title">Minimum priority</string>
-  <string name="settings_notify_min_priority_summary">Notifications with priority %1$s or higher are shown.</string>
-  <string name="settings_notify_decay_time_title">Dismiss timeout</string>
-  <string name="settings_notify_decay_time_dialog">Dismiss timeout</string>
-  <string name="settings_notify_decay_time_summary">Notification dismisses after %1$s sec. after appearance.</string>
-  <string name="settings_only_in_fullscreen_title">Only in fullscreen</string>
-  <string name="settings_app_settings_title">Apps</string>
-  <string name="settings_app_settings_summary">Set preferences per application.</string>
-  <string name="preference_timeout_normal">Automatically hide notification after:</string>
-  <string name="preference_timeout_sec">%1$s sec.</string>
+  <string name="settings">הגדרות</string>
+  <string name="settings_multi_list_divider">,</string>
+  <string name="settings_unknown_value">ערך לא ידוע</string>
+  <string name="settings_placeholder_title">מקום שמור</string>
+  <string name="settings_placeholder_summary">מקום לאפשרויות עתידיות.</string>
+  <string name="settings_notifies_category">התראות</string>
+  <string name="settings_other_category">אחר</string>
+  <string name="settings_theme_title">ערכת נושא</string>
+  <string name="settings_theme_summary">ערכת הנושא %1$s מוגדרת לך.</string>
+  <string name="settings_notify_min_priority_title">עדיפות מינימלית</string>
+  <string name="settings_notify_min_priority_summary">מוצגות התראות עם עדיפות %1$s או גבוהה ממנה.</string>
+  <string name="settings_notify_decay_time_title">פסק זמן לביטול</string>
+  <string name="settings_notify_decay_time_dialog">פסק זמן לביטול</string>
+  <string name="settings_notify_decay_time_summary">לסגירת התראה לאחר %1$s שניות. לאחר הופעתן.</string>
+  <string name="settings_hide_on_touch_outside_title">הסתר בעת מגע חיצוני</string>
+  <string name="settings_only_in_fullscreen_title">רק במסך מלא</string>
+  <string name="settings_app_settings_title">אפליקציות</string>
+  <string name="settings_app_settings_summary">קבע הגדרות לכל אפליקציה.</string>
+  <string name="preference_timeout_normal">החבא אוטומטית התראות לאחר:</string>
+  <string name="preference_timeout_sec">%1$s שניות.</string>
 </resources>

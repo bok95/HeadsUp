@@ -33,6 +33,7 @@
   <string name="settings_notify_decay_time_title">Задержка отклонения уведомления</string>
   <string name="settings_notify_decay_time_dialog">Задержка отклонения уведомления</string>
   <string name="settings_notify_decay_time_summary">Уведомление автоматически отклоняется через %1$s сек. после появления.</string>
+  <string name="settings_hide_on_touch_outside_title">Скрывать по касанию вне уведомления</string>
   <string name="settings_only_in_fullscreen_title">Только в полноэкранном режиме</string>
   <string name="settings_app_settings_title">Приложения</string>
   <string name="settings_app_settings_summary">Настройка каждого приложения.</string>

@@ -22,8 +22,8 @@
   <string name="donation_action">Doneer</string>
   <string name="donation_title">Doneer aan de ontwikkelaar</string>
   <string name="donation_info"><![CDATA[
-        HeadsUp is a free and <a href="https://www.github.com/AChep/HeadsUp">open source</a> app.
-        You can show your appreciation and support development by donating:
+        AcDisplay is een gratis <a href="https://www.github.com/AChep/AcDisplay">open source</a> app.
+        U kunt uw waardering uiten en de ontwikkeling steunen door te doneren:
     ]]></string>
   <string name="donation_item_bought">Je hebt hiervoor al gedoneerd.</string>
   <string name="donation_1">Een ijsje</string>

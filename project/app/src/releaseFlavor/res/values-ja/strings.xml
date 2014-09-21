@@ -19,19 +19,19 @@
   ~ MA  02110-1301, USA.
   -->
 <resources>
-  <string name="widget_toggle_enabled">Enabled</string>
-  <string name="widget_toggle_disabled">Disabled</string>
-  <string name="test_action">Send test notification</string>
-  <string name="test_notification_message">This is a sample notification.</string>
+  <string name="widget_toggle_enabled">能動</string>
+  <string name="widget_toggle_disabled">無効</string>
+  <string name="test_action">テスト通知を送信</string>
+  <string name="test_notification_message">これはサンプル通知です。</string>
   <string name="test_notification_message_large">Swipe left or right to dismiss.\nTouch to open.</string>
-  <string name="init_notification_text">Just dismiss this notification.</string>
-  <string name="remote_enable_acdisplay">HeadsUp is enabled.</string>
-  <string name="remote_disable_acdisplay">HeadsUp is disabled.</string>
-  <string name="compat_title">HeadsUp is running in compatibility mode:</string>
-  <string name="compat_notifications">Notifications cannot be dismissed nor grouped</string>
-  <string name="access_title">Required permissions:</string>
-  <string name="access_setup">Setup permissions</string>
-  <string name="access_notifications">Notifications</string>
+  <string name="init_notification_text">この通知を閉じします。</string>
+  <string name="remote_enable_acdisplay">HeadsUpは能動します。</string>
+  <string name="remote_disable_acdisplay">HeadsUpは無効します。</string>
+  <string name="compat_title">HeadsUpは互換モードで動作しています：</string>
+  <string name="compat_notifications">通知は解雇さもグループすることができません。</string>
+  <string name="access_title">必要な許可：</string>
+  <string name="access_setup">セットアップ許可</string>
+  <string name="access_notifications">通知</string>
   <string name="access_notifications_description">Needed to get access to notifications.</string>
-  <string name="access_notifications_grant_manually">Go to Settings &gt; Security &gt; Notification access and check HeadsUp.</string>
+  <string name="access_notifications_grant_manually">「設定] &gt; [セキュリティ] &gt; [通知のアクセス」 &gt; HeadsUpをチェック</string>
 </resources>

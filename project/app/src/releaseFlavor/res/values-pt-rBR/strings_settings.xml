@@ -33,6 +33,7 @@
   <string name="settings_notify_decay_time_title">Tempo de descarte</string>
   <string name="settings_notify_decay_time_dialog">Tempo de descarte</string>
   <string name="settings_notify_decay_time_summary">A notificação é descartada %1$s segundo após a aparição.</string>
+  <string name="settings_hide_on_touch_outside_title">Hide on touch outside</string>
   <string name="settings_only_in_fullscreen_title">Apenas em tela cheia</string>
   <string name="settings_app_settings_title">Apps</string>
   <string name="settings_app_settings_summary">Definir preferências por aplicação.</string>

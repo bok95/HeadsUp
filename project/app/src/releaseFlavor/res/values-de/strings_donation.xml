@@ -33,5 +33,5 @@
   <string name="donation_50">SSD Festplatte</string>
   <string name="donation_99">Sound-System</string>
   <string name="donation_error_iab_setup">Fehler beim Einrichten des In-App-Bezahlungsservice!</string>
-  <string name="donation_no_responsibility">Beachten Sie, dass Google für diese Zahlungsmethode nicht verantwortlich ist.</string>
+  <string name="donation_no_responsibility">Beachte , dass Google für diese Zahlungsmethode nicht verantwortlich ist.</string>
 </resources>

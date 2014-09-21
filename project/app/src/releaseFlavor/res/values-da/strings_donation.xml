@@ -19,19 +19,19 @@
   ~ MA  02110-1301, USA.
   -->
 <resources>
-  <string name="donation_action">Donate</string>
-  <string name="donation_title">Donate to developer</string>
+  <string name="donation_action">Donér</string>
+  <string name="donation_title">Donér til udvikleren</string>
   <string name="donation_info"><![CDATA[
-        HeadsUp is a free and <a href="https://www.github.com/AChep/HeadsUp">open source</a> app.
-        You can show your appreciation and support development by donating:
+        HeadsUp er en gratis og <a href="https://www.github.com/AChep/HeadsUp">open source</a> app.
+        Du kan vise din tilfredshed og støtte udviklingen ved at donere:
     ]]></string>
-  <string name="donation_item_bought">You\'ve donated for this item already.</string>
-  <string name="donation_1">An ice cream</string>
-  <string name="donation_4">Cup of coffee</string>
-  <string name="donation_10">Electricity bills</string>
-  <string name="donation_20">The right pillow</string>
-  <string name="donation_50">Solid-state drive</string>
-  <string name="donation_99">Sound system</string>
-  <string name="donation_error_iab_setup">Failed to setup in-app-billing service!</string>
-  <string name="donation_no_responsibility">Notice that Google is not responsible for that payments method.</string>
+  <string name="donation_item_bought">Du har allerede doneret for denne vare.</string>
+  <string name="donation_1">En is</string>
+  <string name="donation_4">En kop kaffe</string>
+  <string name="donation_10">Elregninger</string>
+  <string name="donation_20">En god pude</string>
+  <string name="donation_50">Solid state drive</string>
+  <string name="donation_99">Lydsystem</string>
+  <string name="donation_error_iab_setup">Fejl, kunne ikke starte \'køb i app\' tjenesten!</string>
+  <string name="donation_no_responsibility">Bemærk at Google ikke er ansvarlig, for denne betalingsmetode.</string>
 </resources>

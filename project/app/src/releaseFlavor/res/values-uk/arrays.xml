@@ -20,19 +20,19 @@
   -->
 <resources>
   <string-array name="feedback_types">
-    <item>Bug</item>
-    <item>Suggestion</item>
-    <item>Other</item>
+    <item>Помилка</item>
+    <item>Пропозиція</item>
+    <item>Інше</item>
   </string-array>
   <string-array name="notify_priorities">
-    <item>Maximum</item>
-    <item>High</item>
-    <item>Normal</item>
-    <item>Low</item>
-    <item>Minimum</item>
+    <item>Максимум</item>
+    <item>Висока</item>
+    <item>Звичайна</item>
+    <item>Низька</item>
+    <item>Мінімальна</item>
   </string-array>
   <string-array name="themes">
-    <item>Light</item>
-    <item>Dark</item>
+    <item>Світлий</item>
+    <item>Темний</item>
   </string-array>
 </resources>

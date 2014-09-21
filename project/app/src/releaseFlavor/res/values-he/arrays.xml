@@ -26,7 +26,7 @@
   </string-array>
   <string-array name="notify_priorities">
     <item>מקסימום</item>
-    <item>גבוהה</item>
+    <item>דיוק גבוה</item>
     <item>רגיל</item>
     <item>נמוך</item>
     <item>מינימום</item>

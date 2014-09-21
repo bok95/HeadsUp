@@ -20,19 +20,19 @@
   -->
 <resources>
   <string-array name="feedback_types">
-    <item>Bug</item>
-    <item>Suggestion</item>
-    <item>Other</item>
+    <item>バグ</item>
+    <item>フィードバック</item>
+    <item>その他</item>
   </string-array>
   <string-array name="notify_priorities">
-    <item>Maximum</item>
-    <item>High</item>
-    <item>Normal</item>
-    <item>Low</item>
-    <item>Minimum</item>
+    <item>最大限</item>
+    <item>高</item>
+    <item>普通</item>
+    <item>下</item>
+    <item>最少</item>
   </string-array>
   <string-array name="themes">
-    <item>Light</item>
-    <item>Dark</item>
+    <item>ライト</item>
+    <item>ダーク</item>
   </string-array>
 </resources>

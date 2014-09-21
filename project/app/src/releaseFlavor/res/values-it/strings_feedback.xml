@@ -21,7 +21,7 @@
 <resources>
   <string name="feedback">Feedback</string>
   <string name="feedback_type_label">Scegliere l\'oggetto del messaggio:</string>
-  <string name="feedback_msg_hint">Il tuo messaggio. Le specifiche del dispositivo verranno automaticamente incluse.</string>
+  <string name="feedback_msg_hint">Scrivi il tuo messaggio. Le specifiche del dispositivo verranno automaticamente incluse.</string>
   <string name="feedback_send">Invia</string>
   <string name="feedback_error_no_app">Non è installata nessuna applicazione per mandare email.</string>
   <string name="feedback_error_msg_too_short">Il messaggio deve contenere almeno %1$d simboli.</string>

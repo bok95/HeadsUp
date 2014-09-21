@@ -33,6 +33,7 @@
   <string name="settings_notify_decay_time_title">Dismiss timeout</string>
   <string name="settings_notify_decay_time_dialog">Dismiss timeout</string>
   <string name="settings_notify_decay_time_summary">Notification dismisses after %1$s sec. after appearance.</string>
+  <string name="settings_hide_on_touch_outside_title">Hide on touch outside</string>
   <string name="settings_only_in_fullscreen_title">Only in fullscreen</string>
   <string name="settings_app_settings_title">Apps</string>
   <string name="settings_app_settings_summary">Set preferences per application.</string>

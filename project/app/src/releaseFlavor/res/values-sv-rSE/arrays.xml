@@ -20,19 +20,19 @@
   -->
 <resources>
   <string-array name="feedback_types">
-    <item>Bug</item>
-    <item>Suggestion</item>
-    <item>Other</item>
+    <item>Bugg</item>
+    <item>Förslag</item>
+    <item>Annat</item>
   </string-array>
   <string-array name="notify_priorities">
-    <item>Maximum</item>
-    <item>High</item>
+    <item>Maximal</item>
+    <item>Hög</item>
     <item>Normal</item>
-    <item>Low</item>
+    <item>Låg</item>
     <item>Minimum</item>
   </string-array>
   <string-array name="themes">
-    <item>Light</item>
-    <item>Dark</item>
+    <item>Ljus</item>
+    <item>Mörk</item>
   </string-array>
 </resources>

@@ -33,6 +33,7 @@
   <string name="settings_notify_decay_time_title">Απόρριψη χρονικού ορίου</string>
   <string name="settings_notify_decay_time_dialog">Απόρριψη χρονικού ορίου</string>
   <string name="settings_notify_decay_time_summary">Η ειδοποίηση απορρίπτεται σε %1$s δευτ. από την εμφάνιση της.</string>
+  <string name="settings_hide_on_touch_outside_title">Hide on touch outside</string>
   <string name="settings_only_in_fullscreen_title">Μόνο σε πλήρη οθόνη</string>
   <string name="settings_app_settings_title">Εφαρμογές</string>
   <string name="settings_app_settings_summary">Ρύθμιση προτιμήσεων ανά εφαρμογή.</string>
