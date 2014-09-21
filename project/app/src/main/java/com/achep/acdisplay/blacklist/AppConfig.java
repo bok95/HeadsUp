@@ -36,31 +36,37 @@ public class AppConfig {
     public static final int DIFF_RESTRICTED = 2;
     public static final int DIFF_HIDDEN = 4;
     public static final int DIFF_NON_CLEARABLE = 8;
+    public static final int DIFF_DONT_OVERLAY = 16;
 
     static final boolean DEFAULT_RESTRICTED = false;
     static final boolean DEFAULT_HIDDEN = false;
     static final boolean DEFAULT_NON_CLEARABLE = false;
+    static final boolean DEFAULT_DONT_OVERLAY = false;
 
     public String packageName;
     public boolean[] restricted = new boolean[]{DEFAULT_RESTRICTED};
     public boolean[] hidden = new boolean[]{DEFAULT_HIDDEN};
     public boolean[] nonClearable = new boolean[]{DEFAULT_NON_CLEARABLE};
+    public boolean[] dontOverlay = new boolean[]{DEFAULT_NON_CLEARABLE};
 
     public AppConfig(String packageName) {
         this(packageName,
                 DEFAULT_RESTRICTED,
                 DEFAULT_HIDDEN,
-                DEFAULT_NON_CLEARABLE);
+                DEFAULT_NON_CLEARABLE,
+                DEFAULT_DONT_OVERLAY);
     }
 
     public AppConfig(String packageName,
                      boolean restricted,
                      boolean hidden,
-                     boolean nonClearable) {
+                     boolean nonClearable,
+                     boolean dontOverlay) {
         this.packageName = packageName;
         setRestricted(restricted);
         setHidden(hidden);
         setNonClearableEnabled(nonClearable);
+        setDontOverlayEnabled(dontOverlay);
     }
 
     /**
@@ -70,6 +76,7 @@ public class AppConfig {
         config.setRestricted(DEFAULT_RESTRICTED);
         config.setHidden(DEFAULT_HIDDEN);
         config.setNonClearableEnabled(DEFAULT_NON_CLEARABLE);
+        config.setDontOverlayEnabled(DEFAULT_DONT_OVERLAY);
     }
 
     /**
@@ -85,6 +92,7 @@ public class AppConfig {
         clone.setRestricted(config.isRestricted());
         clone.setHidden(config.isHidden());
         clone.setNonClearableEnabled(config.isNonClearableEnabled());
+        clone.setDontOverlayEnabled(config.isDontOverlayEnabled());
         return clone;
     }
 
@@ -131,6 +139,7 @@ public class AppConfig {
                 + "restricted=" + isRestricted()
                 + " hidden=" + isHidden()
                 + " non-clearable=" + isNonClearableEnabled()
+                + " dont_overlay=" + isDontOverlayEnabled()
                 + " pkg=" + packageName
                 + "]";
     }
@@ -145,6 +154,10 @@ public class AppConfig {
 
     public void setNonClearableEnabled(boolean enabled) {
         this.nonClearable[0] = enabled;
+    }
+
+    public void setDontOverlayEnabled(boolean enabled) {
+        this.dontOverlay[0] = enabled;
     }
 
     public boolean isRestricted() {
@@ -167,18 +180,24 @@ public class AppConfig {
         return nonClearable[0];
     }
 
+    public boolean isDontOverlayEnabled() {
+        return dontOverlay[0];
+    }
+
     /**
      * @return {@code true} if all options are set to default, {@code false} otherwise.
      * @see AppConfig#DEFAULT_RESTRICTED
      * @see AppConfig#DEFAULT_HIDDEN
      * @see AppConfig#DEFAULT_NON_CLEARABLE
+     * @see AppConfig#DEFAULT_DONT_OVERLAY
      * @see #reset(AppConfig)
      */
     @SuppressWarnings("PointlessBooleanExpression")
     boolean equalsToDefault() {
         return isRestricted() == AppConfig.DEFAULT_RESTRICTED
                 && isHidden() == AppConfig.DEFAULT_HIDDEN
-                && isNonClearableEnabled() == AppConfig.DEFAULT_NON_CLEARABLE;
+                && isNonClearableEnabled() == AppConfig.DEFAULT_NON_CLEARABLE
+                && isDontOverlayEnabled() == AppConfig.DEFAULT_DONT_OVERLAY;
     }
 
     /**
@@ -192,6 +211,7 @@ public class AppConfig {
         private static final String KEY_RESTRICTED = "restricted_";
         private static final String KEY_HIDDEN = "hidden_";
         private static final String KEY_NON_CLEARABLE = "non-clearable_";
+        private static final String KEY_DONT_OVERLAY = "dont_overlay_";
 
         /**
          * {@inheritDoc}
@@ -202,6 +222,7 @@ public class AppConfig {
             editor.putBoolean(KEY_RESTRICTED + position, ps.isRestricted());
             editor.putBoolean(KEY_HIDDEN + position, ps.isHidden());
             editor.putBoolean(KEY_NON_CLEARABLE + position, ps.isNonClearableEnabled());
+            editor.putBoolean(KEY_DONT_OVERLAY + position, ps.isDontOverlayEnabled());
             return editor;
         }
 
@@ -214,7 +235,8 @@ public class AppConfig {
             boolean restricted = prefs.getBoolean(KEY_RESTRICTED + position, DEFAULT_RESTRICTED);
             boolean hidden = prefs.getBoolean(KEY_HIDDEN + position, DEFAULT_HIDDEN);
             boolean ongoing = prefs.getBoolean(KEY_NON_CLEARABLE + position, DEFAULT_NON_CLEARABLE);
-            return new AppConfig(pkg, restricted, hidden, ongoing);
+            boolean dontOverlay = prefs.getBoolean(KEY_DONT_OVERLAY + position, DEFAULT_DONT_OVERLAY);
+            return new AppConfig(pkg, restricted, hidden, ongoing, dontOverlay);
         }
     }
 
@@ -232,7 +254,8 @@ public class AppConfig {
         public int compare(AppConfig object, AppConfig old) {
             return orZero(DIFF_HIDDEN, object.isHidden(), old.isHidden())
                     | orZero(DIFF_RESTRICTED, object.isRestricted(), old.isRestricted())
-                    | orZero(DIFF_NON_CLEARABLE, object.isNonClearableEnabled(), old.isNonClearableEnabled());
+                    | orZero(DIFF_NON_CLEARABLE, object.isNonClearableEnabled(), old.isNonClearableEnabled())
+                    | orZero(DIFF_DONT_OVERLAY, object.isDontOverlayEnabled(), old.isDontOverlayEnabled());
         }
 
         private int orZero(int value, boolean a, boolean b) {

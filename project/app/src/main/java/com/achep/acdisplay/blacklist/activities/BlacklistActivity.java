@@ -554,7 +554,10 @@ public class BlacklistActivity extends PreferenceActivity {
 
                     // Show checked options in summary.
                     // TODO: Find the way to optimize it.
-                    if (config.isHidden() || config.isRestricted() || config.isNonClearableEnabled()) {
+                    if (config.isHidden()
+                            || config.isRestricted()
+                            || config.isNonClearableEnabled()
+                            || config.isDontOverlayEnabled()) {
                         StringBuilder sb = new StringBuilder();
                         boolean empty = true;
 
@@ -565,6 +568,9 @@ public class BlacklistActivity extends PreferenceActivity {
                                 // Non-clearable
                                 MathUtils.bool(config.isNonClearableEnabled()),
                                 R.string.blacklist_app_non_clearable_title,
+                                // Don't overlay
+                                MathUtils.bool(config.isDontOverlayEnabled()),
+                                R.string.blacklist_dont_overlay_title,
                         };
 
                         // Append checked options.

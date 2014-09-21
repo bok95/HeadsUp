@@ -31,4 +31,8 @@
     <string name="blacklist_app_non_clearable_title">Non-clearable notifies</string>
     <string name="blacklist_app_non_clearable_summary">Show non-clearable notifications, such as those from services.</string>
 
+    <!-- Don't show a popup above this app. -->
+    <string name="blacklist_dont_overlay_title">Don\'t overlay</string>
+    <string name="blacklist_dont_overlay_summary">Don\'t show a popup above this app.</string>
+
 </resources>

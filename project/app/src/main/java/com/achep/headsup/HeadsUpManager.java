@@ -1,5 +1,6 @@
 package com.achep.headsup;
 
+import android.app.ActivityManager;
 import android.app.PendingIntent;
 import android.content.BroadcastReceiver;
 import android.content.Context;
@@ -23,11 +24,14 @@ import com.achep.acdisplay.App;
 import com.achep.acdisplay.Config;
 import com.achep.acdisplay.Device;
 import com.achep.acdisplay.animations.AnimationListenerAdapter;
+import com.achep.acdisplay.blacklist.AppConfig;
+import com.achep.acdisplay.blacklist.Blacklist;
 import com.achep.acdisplay.compat.TransitionManager;
 import com.achep.acdisplay.notifications.NotificationPresenter;
 import com.achep.acdisplay.notifications.NotificationUtils;
 import com.achep.acdisplay.notifications.OpenNotification;
 import com.achep.acdisplay.receiver.Receiver;
+import com.achep.acdisplay.utils.ActivityUtils;
 import com.achep.acdisplay.utils.PendingIntentUtils;
 import com.achep.acdisplay.utils.PowerUtils;
 import com.achep.acdisplay.widgets.NotificationWidget;
@@ -169,6 +173,15 @@ public class HeadsUpManager implements
 
         switch (event) {
             case NotificationPresenter.EVENT_POSTED:
+                // Don't overlay option's code.
+                String packageName = ActivityUtils.getCurrentRunningActivityPackage(mContext);
+                if (packageName != null) {
+                    AppConfig appConfig = Blacklist.getInstance().getAppConfig(packageName);
+                    if (appConfig.isDontOverlayEnabled()) {
+                        return;
+                    }
+                }
+
                 if (mConfig.isShownOnlyInFullscreen() && Device.hasJellyBeanMR1Api()) {
                     // TODO: Write a detector for fullscreen mode.
                     DisplayMetrics metrics = new DisplayMetrics();

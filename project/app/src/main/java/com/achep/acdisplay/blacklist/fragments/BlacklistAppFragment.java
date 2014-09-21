@@ -32,6 +32,7 @@ import android.widget.LinearLayout;
 import android.widget.ScrollView;
 import android.widget.TextView;
 
+import com.achep.acdisplay.blacklist.options.DontOverlayOption;
 import com.achep.headsup.R;
 import com.achep.acdisplay.blacklist.Blacklist;
 import com.achep.acdisplay.blacklist.options.NonClearableOption;
@@ -84,7 +85,8 @@ public class BlacklistAppFragment extends Fragment {
         mPackageName = extractPackageName(getArguments(), savedInstanceState);
         mOptions = new Option[] {
                 new HideOption(activity, new CheckBox(activity), blacklist, mPackageName),
-                new NonClearableOption(activity, new CheckBox(activity), blacklist, mPackageName)
+                new NonClearableOption(activity, new CheckBox(activity), blacklist, mPackageName),
+                new DontOverlayOption(activity, new CheckBox(activity), blacklist, mPackageName),
         };
     }
 

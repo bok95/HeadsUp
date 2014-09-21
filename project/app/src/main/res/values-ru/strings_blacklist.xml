@@ -31,4 +31,8 @@
     <string name="blacklist_app_non_clearable_title">Неочищаемые уведомления</string>
     <string name="blacklist_app_non_clearable_summary">Показывать неочищаемые приложения, такие как уведомления от сервисов.</string>
 
+    <!-- Don't show a popup above this app. -->
+    <string name="blacklist_dont_overlay_title">Не перекрывать</string>
+    <string name="blacklist_dont_overlay_summary">Не показывать всплывающее окно поверх этого приложения.</string>
+
 </resources>
