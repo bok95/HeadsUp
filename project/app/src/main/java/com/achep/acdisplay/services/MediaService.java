@@ -58,12 +58,6 @@ public class MediaService extends NotificationListenerService {
         switch (intent.getAction()) {
             default:
                 sService = this;
-
-                // What is the idea of init notification?
-                // Well the main goal is to access #getActiveNotifications()
-                // what seems to be not possible without dirty and buggy
-                // workarounds.
-                NotificationPresenter.getInstance().tryStartInitProcess();
                 NotificationPresenter.getInstance().setHeadsUpEnabled(
                                 getApplicationContext(),
                                 Config.getInstance().isEnabled());
@@ -99,7 +93,6 @@ public class MediaService extends NotificationListenerService {
     }
 
     private void rockNotification(final StatusBarNotification sbn, final boolean post) {
-        final StatusBarNotification[] activeNotifies = getActiveNotifications();
         runOnMainLooper(new Runnable() {
             @Override
             public void run() {
@@ -111,8 +104,6 @@ public class MediaService extends NotificationListenerService {
                 } else {
                     np.removeNotification(n);
                 }
-
-                np.tryInit(MediaService.this, sbn, activeNotifies);
             }
         });
     }

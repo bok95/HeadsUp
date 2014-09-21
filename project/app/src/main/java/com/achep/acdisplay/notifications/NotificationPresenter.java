@@ -60,16 +60,10 @@ public class NotificationPresenter implements NotificationList.OnNotificationLis
     private static final int RESULT_SUCCESS = 1;
     private static final int RESULT_SPAM = -1;
 
-    private static final int INITIALIZING_PROCESS_NONE = 0;
-    private static final int INITIALIZING_PROCESS_STARTED = 1;
-    private static final int INITIALIZING_PROCESS_DONE = 2;
-
     private static final int FLAG_DONT_NOTIFY_FOLLOWERS = 1;
     private static final int FLAG_DONT_WAKE_UP = 2;
 
     private static NotificationPresenter sNotificationPresenter;
-
-    private int mInitProcess = INITIALIZING_PROCESS_NONE;
 
     private final NotificationList mGList;
     private final NotificationList mLList;
@@ -405,79 +399,6 @@ public class NotificationPresenter implements NotificationList.OnNotificationLis
         return sbn != null
                 && sbn.getId() == App.ID_NOTIFY_INIT
                 && n.getPackageName().equals(PackageUtils.getName(context));
-    }
-
-    // //////////////////////////////////////////
-    // ////////// -- INITIALIZING -- ////////////
-    // //////////////////////////////////////////
-
-    /**
-     * Should be called when notification listener service is ready to receive new notifications.
-     */
-    // Running on wrong thread
-    public void tryStartInitProcess() {
-        if (mInitProcess != INITIALIZING_PROCESS_NONE) {
-            return;
-        }
-
-        mInitProcess = INITIALIZING_PROCESS_STARTED;
-
-        // Well I know that handler doesn't work properly on deep sleep.
-        // This is okay. It'll send this init notification after waking up.
-        new Handler().postDelayed(new Runnable() {
-            @Override
-            public void run() {
-                MediaService service = MediaService.sService;
-
-                if (service == null) {
-                    Log.w(TAG, "Tried to send an init-notification but notification service is offline.");
-                    return;
-                }
-
-                Resources res = service.getResources();
-                Notification.Builder builder = new Notification.Builder(service)
-                        .setContentTitle(res.getString(R.string.app_name))
-                        .setContentText(res.getString(R.string.init_notification_text))
-                        .setSmallIcon(R.drawable.stat_notify)
-                        .setPriority(Notification.PRIORITY_MIN)
-                        .setAutoCancel(true);
-
-                NotificationManager nm = (NotificationManager)
-                        service.getSystemService(Context.NOTIFICATION_SERVICE);
-                nm.notify(App.ID_NOTIFY_INIT, builder.build());
-            }
-        }, 2500);
-    }
-
-    @SuppressWarnings("PointlessBooleanExpression")
-    public void tryInit(MediaService service, final StatusBarNotification n, StatusBarNotification[] activeNotifications) {
-        if (mInitProcess != INITIALIZING_PROCESS_STARTED
-                // Is posted notification equals to init notification?
-                || n.getId() != App.ID_NOTIFY_INIT
-                || n.getPackageName().equals(PackageUtils.getName(service)) == false) {
-            return;
-        } else {
-            mInitProcess = INITIALIZING_PROCESS_DONE;
-        }
-
-        if (activeNotifications != null) {
-            for (StatusBarNotification notification : activeNotifications) {
-                OpenNotification n1 = OpenNotification.newInstance(notification);
-                postNotification(service, n1, FLAG_DONT_NOTIFY_FOLLOWERS | FLAG_DONT_WAKE_UP);
-            }
-            notifyListeners(null, EVENT_BATH);
-        }
-
-        new Handler().postDelayed(new Runnable() {
-            @Override
-            public void run() {
-                NotificationUtils.dismissNotification(OpenNotification.newInstance(n));
-            }
-        }, 500);
-    }
-
-    public boolean isInitialized() {
-        return mInitProcess == INITIALIZING_PROCESS_DONE;
     }
 
 }
