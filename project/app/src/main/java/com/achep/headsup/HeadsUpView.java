@@ -61,22 +61,4 @@ public class HeadsUpView extends FrameLayout {
         }
     }
 
-    /**
-     * {@inheritDoc}
-     */
-    @Override
-    public boolean dispatchKeyEvent(@NonNull KeyEvent event) {
-        if (!ignoreAnyInteractivity()) {
-            boolean down = event.getAction() == KeyEvent.ACTION_DOWN;
-            switch (event.getKeyCode()) {
-                case KeyEvent.KEYCODE_BACK:
-                    if (!down && !event.isCanceled()) {
-                        mManager.hideHeadsUp();
-                    }
-                    return true;
-            }
-        }
-        return super.dispatchKeyEvent(event);
-    }
-
 }

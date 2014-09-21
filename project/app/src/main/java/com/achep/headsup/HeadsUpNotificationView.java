@@ -148,24 +148,6 @@ public class HeadsUpNotificationView extends NotificationWidget implements
         mSwipeHelper.setPagingTouchSlop(pagingTouchSlop);
     }
 
-    /**
-     * {@inheritDoc}
-     */
-    @Override
-    public boolean dispatchKeyEvent(@NonNull KeyEvent event) {
-        if (!ignoreAnyInteractivity()) {
-            boolean down = event.getAction() == KeyEvent.ACTION_DOWN;
-            switch (event.getKeyCode()) {
-                case KeyEvent.KEYCODE_BACK:
-                    if (!down && !event.isCanceled()) {
-                        mManager.hideHeadsUp();
-                    }
-                    return true;
-            }
-        }
-        return super.dispatchKeyEvent(event);
-    }
-
     //-- EXPAND HELPER'S METHODS ----------------------------------------------
 
     @Override
