@@ -85,6 +85,7 @@ public class HeadsUpManager implements
             if (mContainer.getChildCount() == 1) {
                 hideHeadsUp();
             } else {
+                mRootView.preventInstantInteractivity();
                 mContainer.removeView(widget);
             }
         }
@@ -316,6 +317,7 @@ public class HeadsUpManager implements
             }
         });
 
+        mRootView.preventInstantInteractivity();
         mContainer.addView(widget);
         mWidgetList.add(widget);
         widget.setAlpha(0);

@@ -28,11 +28,8 @@ public class HeadsUpNotificationView extends NotificationWidget implements
     private final int mRippleColor;
     private final boolean mRipple;
 
-    private final int mTouchSensitivityDelay;
     private SwipeHelper mSwipeHelper;
     private ExpandHelper mExpandHelper;
-
-    private long mStartTouchTime;
 
     private HeadsUpManager mManager;
 
@@ -42,8 +39,6 @@ public class HeadsUpNotificationView extends NotificationWidget implements
 
     public HeadsUpNotificationView(Context context, AttributeSet attrs, int defStyle) {
         super(context, attrs, defStyle);
-        mTouchSensitivityDelay = getResources().getInteger(R.integer.heads_up_sensitivity_delay);
-
         TypedArray a = context.obtainStyledAttributes(attrs, R.styleable.HeadsUpNotificationView);
         mRippleColor = a.getColor(R.styleable.HeadsUpNotificationView_rippleColor, 0);
         mRipple = a.getBoolean(R.styleable.HeadsUpNotificationView_ripple, false);
@@ -82,17 +77,6 @@ public class HeadsUpNotificationView extends NotificationWidget implements
         int maxHeight = getResources().getDimensionPixelSize(R.dimen.notification_row_max_height);
         mExpandHelper = new ExpandHelper(getContext(), this, minHeight, maxHeight);
         mExpandHelper.setForceOneFinger(true);
-
-        mStartTouchTime = System.currentTimeMillis() + mTouchSensitivityDelay;
-    }
-
-    /**
-     * @return {@code true} if this touch should be ignored
-     * (mainly because of {@link #mTouchSensitivityDelay touch sensitivity delay}),
-     * {@code false} otherwise.
-     */
-    private boolean ignoreAnyInteractivity() {
-        return System.currentTimeMillis() < mStartTouchTime;
     }
 
     /**
@@ -100,8 +84,7 @@ public class HeadsUpNotificationView extends NotificationWidget implements
      */
     @Override
     public boolean onInterceptTouchEvent(MotionEvent event) {
-        return ignoreAnyInteractivity()
-                || mSwipeHelper.onInterceptTouchEvent(event)
+        return mSwipeHelper.onInterceptTouchEvent(event)
                 || mExpandHelper.onInterceptTouchEvent(event)
                 || super.onInterceptTouchEvent(event);
     }
@@ -111,10 +94,6 @@ public class HeadsUpNotificationView extends NotificationWidget implements
      */
     @Override
     public boolean onTouchEvent(@NonNull MotionEvent event) {
-        if (ignoreAnyInteractivity()) {
-            return false;
-        }
-
         switch (event.getAction()) {
             case MotionEvent.ACTION_OUTSIDE:
                 mManager.hideHeadsUp();

@@ -14,22 +14,34 @@ import android.widget.FrameLayout;
  */
 public class HeadsUpView extends FrameLayout {
 
+    private final int mTouchSensitivityDelay;
+    private long mStartTouchTime;
+
     private HeadsUpManager mManager;
 
     public HeadsUpView(Context context) {
-        super(context);
+        this(context, null);
     }
 
     public HeadsUpView(Context context, AttributeSet attrs) {
-        super(context, attrs);
+        this(context, attrs, 0);
     }
 
     public HeadsUpView(Context context, AttributeSet attrs, int defStyle) {
         super(context, attrs, defStyle);
+        mTouchSensitivityDelay = getResources().getInteger(R.integer.heads_up_sensitivity_delay);
     }
 
     public void setHeadsUpManager(HeadsUpManager manager) {
         mManager = manager;
+    }
+
+    /**
+     * Calling this method means that the view won't do any interactivity
+     * such as touches for some {@link com.achep.headsup.R.integer#heads_up_sensitivity_delay time}.
+     */
+    public void preventInstantInteractivity() {
+        mStartTouchTime = System.currentTimeMillis() + mTouchSensitivityDelay;
     }
 
     /**
@@ -38,7 +50,15 @@ public class HeadsUpView extends FrameLayout {
      * {@code false} otherwise.
      */
     private boolean ignoreAnyInteractivity() {
-        return false;//System.currentTimeMillis() < mStartTouchTime;
+        return System.currentTimeMillis() < mStartTouchTime;
+    }
+
+    /**
+     * {@inheritDoc}
+     */
+    @Override
+    public boolean onInterceptTouchEvent(MotionEvent event) {
+        return ignoreAnyInteractivity() || super.onInterceptTouchEvent(event);
     }
 
     /**
