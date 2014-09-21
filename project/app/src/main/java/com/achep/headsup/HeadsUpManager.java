@@ -154,6 +154,10 @@ public class HeadsUpManager implements
         mContainer = null;
     }
 
+    public Config getConfig() {
+        return mConfig;
+    }
+
     @Override
     public void onNotificationListChanged(
             @NonNull NotificationPresenter np,

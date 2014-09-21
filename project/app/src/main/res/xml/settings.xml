@@ -47,6 +47,11 @@
         android:title="@string/settings_other_category" />
 
     <CheckBoxPreference
+        android:key="ux_hide_on_touch_outside"
+        android:title="@string/settings_hide_on_touch_outside_title"
+        android:defaultValue="@bool/config_default_ux_hide_on_touch_outside"/>
+
+    <CheckBoxPreference
         android:key="ux_only_in_fullscreen"
         android:title="@string/settings_only_in_fullscreen_title"
         android:defaultValue="@bool/config_default_ux_only_in_fullscreen"/>

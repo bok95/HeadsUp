@@ -48,6 +48,7 @@ public class SettingsFragment extends PreferenceFragment implements
     public void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         addPreferencesFromResource(R.xml.settings);
+        syncPreference(Config.KEY_UX_HIDE_ON_TOUCH_OUTSIDE);
         syncPreference(Config.KEY_UX_ONLY_IN_FULLSCREEN);
 
         mThemePreference = (ListPreference) findPreference(Config.KEY_UI_THEME);

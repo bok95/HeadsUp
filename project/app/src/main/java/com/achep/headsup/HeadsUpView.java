@@ -52,7 +52,9 @@ public class HeadsUpView extends FrameLayout {
 
         switch (event.getAction()) {
             case MotionEvent.ACTION_OUTSIDE:
-                mManager.hideHeadsUp();
+                if (mManager.getConfig().isHideOnTouchOutsideEnabled()) {
+                    mManager.hideHeadsUp();
+                }
                 return true;
             default:
                 return super.onTouchEvent(event);

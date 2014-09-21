@@ -62,6 +62,7 @@ public class Config implements IOnLowMemory {
     public static final String KEY_UI_THEME = "ui_theme";
 
     // behavior
+    public static final String KEY_UX_HIDE_ON_TOUCH_OUTSIDE = "ux_hide_on_touch_outside";
     public static final String KEY_UX_ONLY_IN_FULLSCREEN = "ux_only_in_fullscreen";
     public static final String KEY_NOTIFY_MIN_PRIORITY = "notify_min_priority";
     public static final String KEY_NOTIFY_DECAY_TIME = "notify_decay_time";
@@ -73,6 +74,7 @@ public class Config implements IOnLowMemory {
     private static Config sConfig;
 
     private boolean mEnabled;
+    private boolean mUxHideOnTouchOutside;
     private boolean mUxOnlyInFullscreen;
     private int mNotifyMinPriority;
     private int mNotifyDecayTime;
@@ -255,6 +257,8 @@ public class Config implements IOnLowMemory {
                 res.getInteger(R.integer.config_default_notify_min_priority));
         mNotifyDecayTime = prefs.getInt(KEY_NOTIFY_DECAY_TIME,
                 res.getInteger(R.integer.config_default_notify_decay_time));
+        mUxHideOnTouchOutside = prefs.getBoolean(KEY_UX_HIDE_ON_TOUCH_OUTSIDE,
+                res.getBoolean(R.bool.config_default_ux_hide_on_touch_outside));
         mUxOnlyInFullscreen = prefs.getBoolean(KEY_UX_ONLY_IN_FULLSCREEN,
                 res.getBoolean(R.bool.config_default_ux_only_in_fullscreen));
 
@@ -282,6 +286,9 @@ public class Config implements IOnLowMemory {
             hashMap = new HashMap<>();
             hashMap.put(KEY_ENABLED, new Option(
                     "setEnabled", "isEnabled", boolean.class));
+            hashMap.put(KEY_UX_HIDE_ON_TOUCH_OUTSIDE, new Option(
+                    "setHideOnTouchOutsideEnabled",
+                    "isHideOnTouchOutsideEnabled", boolean.class));
             hashMap.put(KEY_UX_ONLY_IN_FULLSCREEN, new Option(
                     "setShownOnlyInFullscreen",
                     "isShownOnlyInFullscreen", boolean.class,
@@ -373,6 +380,17 @@ public class Config implements IOnLowMemory {
     }
 
     /**
+     * @param enabled {@code true} to hide heads-up popup on touch outside.
+     * @param listener a listener which will not be notified about this change.
+     * @see #isHideOnTouchOutsideEnabled()
+     */
+    public void setHideOnTouchOutsideEnabled(Context context, boolean enabled,
+                                         OnConfigChangedListener listener) {
+        boolean changed = mUxHideOnTouchOutside != (mUxHideOnTouchOutside = enabled);
+        saveOption(context, KEY_UX_HIDE_ON_TOUCH_OUTSIDE, enabled, listener, changed);
+    }
+
+    /**
      * @param enabled  {@code true} to allow showing popups only in fullscreen mode,
      *                 {@code false} to allow them anytime.
      * @param listener a listener which will not be notified about this change.
@@ -407,6 +425,15 @@ public class Config implements IOnLowMemory {
      */
     public int getNotifyDecayTime() {
         return mNotifyDecayTime;
+    }
+
+    /**
+     * @return {@code true} if popups should hide on touch outside of it,
+     * {@code false} otherwise.
+     * @see #setHideOnTouchOutsideEnabled(Context, boolean, OnConfigChangedListener)
+     */
+    public boolean isHideOnTouchOutsideEnabled() {
+        return mUxHideOnTouchOutside;
     }
 
     /**
