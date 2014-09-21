@@ -179,7 +179,7 @@ public class NotificationPresenter implements NotificationList.OnNotificationLis
         mLList = new NotificationList(this);
         mHeadsUpManager = new HeadsUpManager();
 
-        if (!Device.hasJellyBeanMR2Api()) {
+        if (!Device.hasJellyBeanMR2Api() || Device.hasLemonCakeApi()) {
             mGList.setMaximumSize(5);
             mLList.setMaximumSize(5);
         }
