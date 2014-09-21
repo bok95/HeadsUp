@@ -398,7 +398,7 @@ public class Config implements IOnLowMemory {
      */
     public void setShownOnlyInFullscreen(Context context, boolean enabled,
                                          OnConfigChangedListener listener) {
-        boolean changed = mEnabled != (mEnabled = enabled);
+        boolean changed = mUxOnlyInFullscreen != (mUxOnlyInFullscreen = enabled);
         saveOption(context, KEY_UX_ONLY_IN_FULLSCREEN, enabled, listener, changed);
     }
 
