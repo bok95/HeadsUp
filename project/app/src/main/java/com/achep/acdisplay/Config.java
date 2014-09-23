@@ -213,6 +213,14 @@ public class Config implements IOnLowMemory {
      * @see #unregisterListener(com.achep.acdisplay.Config.OnConfigChangedListener)
      */
     public void registerListener(@NonNull OnConfigChangedListener listener) {
+        // Make sure to register listener only once.
+        for (WeakReference<OnConfigChangedListener> ref : mListenersRefs) {
+            if (ref.get() == listener) {
+                Log.w(TAG, "Tried to register already registered listener!");
+                return;
+            }
+        }
+
         mListenersRefs.add(new WeakReference<>(listener));
     }
 
