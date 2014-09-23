@@ -15,29 +15,29 @@ public class RippleDrawable extends Drawable implements View.OnTouchListener{
 
     final static Property<RippleDrawable, Float> CREATE_TOUCH_RIPPLE =
             new FloatProperty<RippleDrawable>("createTouchRipple") {
-        @Override
-        public void setValue(RippleDrawable object, float value) {
-            object.createTouchRipple(value);
-        }
+                @Override
+                public void setValue(RippleDrawable object, float value) {
+                    object.createTouchRipple(value);
+                }
 
-        @Override
-        public Float get(RippleDrawable object) {
-            return object.getAnimationState();
-        }
-    };
+                @Override
+                public Float get(RippleDrawable object) {
+                    return object.getAnimationState();
+                }
+            };
 
     final static Property<RippleDrawable, Float> DESTROY_TOUCH_RIPPLE =
             new FloatProperty<RippleDrawable>("destroyTouchRipple") {
-        @Override
-        public void setValue(RippleDrawable object, float value) {
-            object.destroyTouchRipple(value);
-        }
+                @Override
+                public void setValue(RippleDrawable object, float value) {
+                    object.destroyTouchRipple(value);
+                }
 
-        @Override
-        public Float get(RippleDrawable object) {
-            return object.getAnimationState();
-        }
-    };
+                @Override
+                public Float get(RippleDrawable object) {
+                    return object.getAnimationState();
+                }
+            };
 
     final static int DEFAULT_ANIM_DURATION = 250;
     final static float END_RIPPLE_TOUCH_RADIUS = 150f;
@@ -61,6 +61,12 @@ public class RippleDrawable extends Drawable implements View.OnTouchListener{
         initRippleElements();
     }
 
+    /**
+     * Creates ripple effect to view
+     *
+     * @param v view to apply ripple drawable
+     * @param primaryColor color of ripples
+     */
     public static void createRipple(View v, int primaryColor){
         RippleDrawable rippleDrawable = new RippleDrawable();
         rippleDrawable.setDrawable(v.getBackground());
@@ -72,10 +78,21 @@ public class RippleDrawable extends Drawable implements View.OnTouchListener{
         if(Build.VERSION.SDK_INT >= 16) {
             v.setBackground(rippleDrawable);
         }else{
+            //noinspection deprecation
             v.setBackgroundDrawable(rippleDrawable);
         }
     }
 
+    /**
+     * Creates ripple animation to view, difference between {@code createRipple(v, primaryColor)}
+     * here animation will start automatically without
+     * user touch event
+     *
+     * @param x fake touch coordinate x
+     * @param y fake touch coordinate y
+     * @param v view to apply ripple drawable
+     * @param primaryColor ripple animation color
+     */
     public static void createRipple(int x, int y, View v, int primaryColor){
         if(!(v.getBackground() instanceof RippleDrawable)) {
             createRipple(v, primaryColor);
@@ -142,7 +159,9 @@ public class RippleDrawable extends Drawable implements View.OnTouchListener{
         switch (action){
             case MotionEvent.ACTION_DOWN:
                 onFingerDown(v, event.getX(), event.getY());
-                return v.onTouchEvent(event);
+                v.onTouchEvent(event); // Fix for views, to handle clicks
+                return true; // fix for scroll, when ACTION_UP & ACTION_CANCEL not come
+
             case MotionEvent.ACTION_MOVE:
                 onFingerMove(event.getX(), event.getY());
                 break;
