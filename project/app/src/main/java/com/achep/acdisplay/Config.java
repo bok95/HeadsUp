@@ -37,6 +37,7 @@ import org.apache.commons.lang.builder.EqualsBuilder;
 import org.apache.commons.lang.builder.HashCodeBuilder;
 
 import java.lang.ref.SoftReference;
+import java.lang.ref.WeakReference;
 import java.lang.reflect.InvocationTargetException;
 import java.lang.reflect.Method;
 import java.util.ArrayList;
@@ -190,7 +191,7 @@ public class Config implements IOnLowMemory {
 
     }
 
-    private ArrayList<OnConfigChangedListener> mListeners;
+    private ArrayList<WeakReference<OnConfigChangedListener>> mListenersRefs;
     private Context mContext;
 
     // //////////////////////////////////////////
@@ -204,12 +205,32 @@ public class Config implements IOnLowMemory {
                 @NonNull Object value);
     }
 
+    /**
+     * Adds new {@link java.lang.ref.WeakReference weak} listener to the config. Make sure you call
+     * {@link #unregisterListener(com.achep.acdisplay.Config.OnConfigChangedListener)} later!
+     *
+     * @param listener a listener to register to config changes.
+     * @see #unregisterListener(com.achep.acdisplay.Config.OnConfigChangedListener)
+     */
     public void registerListener(@NonNull OnConfigChangedListener listener) {
-        mListeners.add(listener);
+        mListenersRefs.add(new WeakReference<>(listener));
     }
 
+    /**
+     * Un-registers listener is there's one.
+     *
+     * @param listener a listener to unregister from config changes.
+     * @see #registerListener(com.achep.acdisplay.Config.OnConfigChangedListener)
+     */
     public void unregisterListener(@NonNull OnConfigChangedListener listener) {
-        mListeners.remove(listener);
+        for (WeakReference<OnConfigChangedListener> ref : mListenersRefs) {
+            if (ref.get() == listener) {
+                mListenersRefs.remove(ref);
+                return;
+            }
+        }
+
+        Log.w(TAG, "Tried to unregister non-existent listener!");
     }
 
     // //////////////////////////////////////////
@@ -226,6 +247,7 @@ public class Config implements IOnLowMemory {
 
     private Config() {
         mTriggers = new Triggers();
+        mListenersRefs = new ArrayList<>(6);
     }
 
     @Override
@@ -239,8 +261,6 @@ public class Config implements IOnLowMemory {
      * This is called on {@link App app's} create.
      */
     void init(@NonNull Context context) {
-        mListeners = new ArrayList<>(6);
-
         Resources res = context.getResources();
         SharedPreferences prefs = getSharedPreferences(context);
 
@@ -308,9 +328,18 @@ public class Config implements IOnLowMemory {
     }
 
     private void notifyConfigChanged(String key, Object value, OnConfigChangedListener listener) {
-        for (OnConfigChangedListener l : mListeners) {
-            if (l == listener) continue;
-            l.onConfigChanged(this, key, value);
+        for (int i = mListenersRefs.size() - 1; i >= 0; i--) {
+            WeakReference<OnConfigChangedListener> ref = mListenersRefs.get(i);
+            OnConfigChangedListener l = ref.get();
+
+            if (l == null) {
+                // There were no links to this listener except
+                // our class.
+                Log.w(TAG, "Deleting unused listener!");
+                mListenersRefs.remove(i);
+            } else if (l != listener) {
+                l.onConfigChanged(this, key, value);
+            }
         }
     }
 
@@ -380,12 +409,12 @@ public class Config implements IOnLowMemory {
     }
 
     /**
-     * @param enabled {@code true} to hide heads-up popup on touch outside.
+     * @param enabled  {@code true} to hide heads-up popup on touch outside.
      * @param listener a listener which will not be notified about this change.
      * @see #isHideOnTouchOutsideEnabled()
      */
     public void setHideOnTouchOutsideEnabled(Context context, boolean enabled,
-                                         OnConfigChangedListener listener) {
+                                             OnConfigChangedListener listener) {
         boolean changed = mUxHideOnTouchOutside != (mUxHideOnTouchOutside = enabled);
         saveOption(context, KEY_UX_HIDE_ON_TOUCH_OUTSIDE, enabled, listener, changed);
     }
