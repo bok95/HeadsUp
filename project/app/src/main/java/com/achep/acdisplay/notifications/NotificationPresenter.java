@@ -21,10 +21,7 @@ package com.achep.acdisplay.notifications;
 
 import android.annotation.SuppressLint;
 import android.app.Notification;
-import android.app.NotificationManager;
 import android.content.Context;
-import android.content.res.Resources;
-import android.os.Handler;
 import android.service.notification.StatusBarNotification;
 import android.support.annotation.NonNull;
 import android.support.annotation.Nullable;
@@ -36,12 +33,11 @@ import com.achep.acdisplay.Config;
 import com.achep.acdisplay.Device;
 import com.achep.acdisplay.Operator;
 import com.achep.headsup.HeadsUpManager;
-import com.achep.headsup.R;
 import com.achep.acdisplay.blacklist.AppConfig;
 import com.achep.acdisplay.blacklist.Blacklist;
-import com.achep.acdisplay.services.MediaService;
 import com.achep.acdisplay.utils.PackageUtils;
 
+import java.lang.ref.WeakReference;
 import java.util.ArrayList;
 
 /**
@@ -68,7 +64,7 @@ public class NotificationPresenter implements NotificationList.OnNotificationLis
     private final NotificationList mGList;
     private final NotificationList mLList;
 
-    private final ArrayList<OnNotificationListChangedListener> mListeners;
+    private final ArrayList<WeakReference<OnNotificationListChangedListener>> mListenersRefs;
     private final Config mConfig;
     private final Blacklist mBlacklist;
 
@@ -166,15 +162,30 @@ public class NotificationPresenter implements NotificationList.OnNotificationLis
     }
 
     public void registerListener(OnNotificationListChangedListener listener) {
-        mListeners.add(listener);
+        // Make sure to register listener only once.
+        for (WeakReference<OnNotificationListChangedListener> ref : mListenersRefs) {
+            if (ref.get() == listener) {
+                Log.w(TAG, "Tried to register already registered listener!");
+                return;
+            }
+        }
+
+        mListenersRefs.add(new WeakReference<>(listener));
     }
 
     public void unregisterListener(OnNotificationListChangedListener listener) {
-        mListeners.remove(listener);
+        for (WeakReference<OnNotificationListChangedListener> ref : mListenersRefs) {
+            if (ref.get() == listener) {
+                mListenersRefs.remove(ref);
+                return;
+            }
+        }
+
+        Log.w(TAG, "Tried to unregister non-existent listener!");
     }
 
     private NotificationPresenter() {
-        mListeners = new ArrayList<>();
+        mListenersRefs = new ArrayList<>();
         mGList = new NotificationList(null);
         mLList = new NotificationList(this);
         mHeadsUpManager = new HeadsUpManager();
@@ -349,8 +360,18 @@ public class NotificationPresenter implements NotificationList.OnNotificationLis
     // //////////////////////////////////////////
 
     private void notifyListeners(@Nullable OpenNotification n, int event) {
-        for (OnNotificationListChangedListener listener : mListeners) {
-            listener.onNotificationListChanged(this, n, event);
+        for (int i = mListenersRefs.size() - 1; i >= 0; i--) {
+            WeakReference<OnNotificationListChangedListener> ref = mListenersRefs.get(i);
+            OnNotificationListChangedListener l = ref.get();
+
+            if (l == null) {
+                // There were no links to this listener except
+                // our class.
+                Log.w(TAG, "Deleting unused listener!");
+                mListenersRefs.remove(i);
+            } else {
+                l.onNotificationListChanged(this, n, event);
+            }
         }
     }
 
